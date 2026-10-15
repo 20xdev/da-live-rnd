@@ -1,0 +1,24 @@
+{
+  "variantName": "cards-profile",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "medium",
+    "hasBackgroundImage": false,
+    "hasGrid": true,
+    "imagePattern": "round-portrait",
+    "structure": "4-column grid of centered profile items: circular portrait, name heading, roles line, dark icon-only social button bar"
+  },
+  "contentPattern": "Team/contributor grid: repeating person profiles each with round portrait, name, roles and social icon links. One row per person: cell 1 portrait image, cell 2 h3 name + roles paragraph + plain text social links (text = network label, e.g. Facebook / Twitter / Instagram).",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/us/en/about-us.html"
+      }
+    ],
+    "reuseCount": 1
+  },
+  "options": [],
+  "memberVariantIds": []
+}

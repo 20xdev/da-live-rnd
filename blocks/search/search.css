@@ -1,0 +1,123 @@
+/* Search - structural styles only (design pass applies brand styling) */
+.search .search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search .search-box .icon-search {
+  position: absolute;
+  left: 0.5em;
+  width: 1em;
+  height: 1em;
+  pointer-events: none;
+}
+
+.search .search-box .icon-search img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.search .search-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.4em 0.5em 0.4em 2em;
+  border: 1px solid currentcolor;
+  font: inherit;
+}
+
+/* summary toggle switch */
+.search .search-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.75em;
+}
+
+.search .search-toggle-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid currentcolor;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+}
+
+.search .search-toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: currentcolor;
+  transition: transform 0.2s;
+}
+
+.search .search-toggle-switch[aria-checked='true']::after {
+  transform: translateX(16px);
+}
+
+/* results */
+.search .search-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+  margin: 1.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search .search-results:empty {
+  display: none;
+}
+
+.search .search-result a {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75em;
+  color: inherit;
+  text-decoration: none;
+}
+
+.search .search-result-image {
+  line-height: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.search .search-result-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.search .search-result-title {
+  margin: 0 0 0.25em;
+}
+
+.search .search-result-body p {
+  margin: 0;
+}
+
+.search .search-results.no-results {
+  display: block;
+}
+
+@media (width >= 600px) {
+  .search .search-result a {
+    grid-template-columns: 200px 1fr;
+    align-items: start;
+  }
+
+  .search .search-result a:not(:has(.search-result-image)) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "da-live-rnd": {
+      "previewOrg": "20xdev",
+      "previewSite": "da-live-rnd",
+      "contentHostUrl": "https://content.da.live/20xdev/da-live-rnd/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

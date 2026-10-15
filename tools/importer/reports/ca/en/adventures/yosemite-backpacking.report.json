@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://wknd.site/ca/en/adventures/yosemite-backpacking.html",
+  "path": "ca/en/adventures/yosemite-backpacking",
+  "timestamp": "2026-10-15T02:33:57.665Z",
+  "title": "Yosemite Backpacking",
+  "template": "adventure-detail",
+  "blocks": [
+    "breadcrumbs",
+    "carousel",
+    "cards-trip-facts",
+    "tabs"
+  ]
+}

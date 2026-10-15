@@ -1,0 +1,26 @@
+{
+  "variantName": "columns-featured",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "large",
+    "structure": "image left (~62%) | grey text panel right: eyebrow + heading + text + CTA"
+  },
+  "contentPattern": "Single-row two-column featured teaser: large image cell plus a content cell with eyebrow, heading, paragraph and a primary CTA button on a light-grey panel.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/us/en.html"
+      }
+    ],
+    "reuseCount": 1
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_21e396a26423"
+  ]
+}

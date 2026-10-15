@@ -1,0 +1,522 @@
+{
+  "templates": [
+    {
+      "name": "content-page",
+      "representativeUrl": "https://wknd.site/us/en/about-us.html",
+      "urls": [
+        "https://wknd.site/ca/en/about-us.html",
+        "https://wknd.site/ca/en/magazine.html",
+        "https://wknd.site/ca/en/magazine/members-only.html",
+        "https://wknd.site/us/en/about-us.html",
+        "https://wknd.site/us/en/ai-powered-search.html",
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "coverageGaps": [],
+      "description": "General content page with page title followed by stacked sections of headings, intro text and image/card grids",
+      "blocks": [
+        {
+          "name": "cards-profile",
+          "instances": [
+            "main.cmp-layout-container--fixed .aem-Grid > section.cmp-experience-fragment--contributor"
+          ]
+        },
+        {
+          "name": "columns-featured",
+          "instances": [
+            "main.cmp-layout-container--fixed .teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            "main.cmp-layout-container--fixed .image-list.list",
+            "main.cmp-layout-container--fixed .teaser.cmp-teaser--secure"
+          ]
+        },
+        {
+          "name": "search",
+          "instances": [
+            "main.cmp-layout-container--fixed .contentaisearch"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page title (+ featured article on magazine index; search form on AI search; image list on members-only)",
+          "selector": [
+            "main.cmp-layout-container--fixed .title"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-featured",
+            "search",
+            "cards"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .title h1"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "First underlined-title group: \"Our Contributors\" profiles (about-us) / \"All Articles\" image list (magazine)",
+          "selector": [
+            "main.cmp-layout-container--fixed .aem-Grid > .title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-profile",
+            "cards"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .aem-Grid > .title.cmp-title--underline h2",
+            "main.cmp-layout-container--fixed .aem-Grid > .text"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Second underlined-title group: \"WKND Guides\" profiles (about-us) / \"Members Only\" intro + secure teasers (magazine)",
+          "selector": [
+            "main.cmp-layout-container--fixed .aem-Grid > .title.cmp-title--underline ~ .title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-profile",
+            "cards"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .aem-Grid > .title.cmp-title--underline ~ .title.cmp-title--underline h2",
+            "main.cmp-layout-container--fixed .aem-Grid > .title.cmp-title--underline ~ .text"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "adventure-detail",
+      "urls": [
+        "https://wknd.site/ca/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/ca/en/adventures/beervana-portland.html",
+        "https://wknd.site/ca/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/ca/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/ca/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/ca/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/ca/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/ca/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/ca/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/ca/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/ca/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/ca/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/ca/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/ca/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/ca/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/ca/en/adventures/yosemite-backpacking.html",
+        "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+        "https://wknd.site/us/en/adventures/beervana-portland.html",
+        "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "https://wknd.site/us/en/adventures/colorado-rock-climbing.html",
+        "https://wknd.site/us/en/adventures/cycling-southern-utah.html",
+        "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+        "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+        "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html",
+        "https://wknd.site/us/en/adventures/napa-wine-tasting.html",
+        "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+        "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+        "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+        "https://wknd.site/us/en/adventures/tahoe-skiing.html",
+        "https://wknd.site/us/en/adventures/west-coast-cycling.html",
+        "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+        "https://wknd.site/us/en/adventures/yosemite-backpacking.html"
+      ],
+      "coverageGaps": [],
+      "description": "Detail page with breadcrumbs, full-width image carousel and tabbed content (overview, itinerary, what to bring, meet the guide)",
+      "blocks": [
+        {
+          "name": "breadcrumbs",
+          "instances": [
+            ".breadcrumb.cmp-breadcrumb--fixed"
+          ]
+        },
+        {
+          "name": "carousel",
+          "instances": [
+            ".carousel.panelcontainer.cmp-carousel--mini"
+          ]
+        },
+        {
+          "name": "cards-trip-facts",
+          "instances": [
+            ".contentfragment.cmp-contentfragment--elements"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            "main.cmp-layout-container--fixed .tabs.panelcontainer"
+          ]
+        }
+      ],
+      "representativeUrl": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Breadcrumbs",
+          "selector": [
+            ".breadcrumb.cmp-breadcrumb--fixed"
+          ],
+          "style": null,
+          "blocks": [
+            "breadcrumbs"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Image carousel",
+          "selector": [
+            ".carousel.panelcontainer.cmp-carousel--mini"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "3",
+          "name": "Page title",
+          "selector": [
+            "main.cmp-layout-container--fixed .title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .title.cmp-title--underline h1"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Trip facts sidebar + tabbed details",
+          "selector": [
+            ".title.cmp-title--underline + main.container.responsivegrid",
+            "main.cmp-layout-container--fixed main.container.aem-GridColumn--default--3",
+            ".contentfragment.cmp-contentfragment--elements"
+          ],
+          "style": "sidebar",
+          "blocks": [
+            "cards-trip-facts",
+            "tabs"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "adventures-listing",
+      "urls": [
+        "https://wknd.site/ca/en/adventures.html",
+        "https://wknd.site/us/en/adventures.html"
+      ],
+      "coverageGaps": [],
+      "description": "Listing page with hero banner and category tabs filtering a grid of linked cards",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            ".teaser.cmp-teaser--hero"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            "main.cmp-layout-container--fixed .tabs.panelcontainer"
+          ]
+        }
+      ],
+      "representativeUrl": "https://wknd.site/us/en/adventures.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page title + hero banner",
+          "selector": [
+            "main.cmp-layout-container--fixed .title:not(.cmp-title--underline)",
+            ".teaser.cmp-teaser--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .title:not(.cmp-title--underline) h1"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Current Adventures (category tabs with adventure card grid)",
+          "selector": [
+            "main.cmp-layout-container--fixed .title.cmp-title--underline",
+            "main.cmp-layout-container--fixed .tabs.panelcontainer"
+          ],
+          "style": null,
+          "blocks": [
+            "tabs"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .title.cmp-title--underline h2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "faq-page",
+      "urls": [
+        "https://wknd.site/ca/en/faqs.html",
+        "https://wknd.site/us/en/faqs.html"
+      ],
+      "coverageGaps": [],
+      "description": "Hero banner followed by an accordion of expandable question and answer items",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            "main.cmp-layout-container--fixed .aem-GridColumn--default--8 .image"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            "main.cmp-layout-container--fixed .accordion.panelcontainer"
+          ]
+        }
+      ],
+      "representativeUrl": "https://wknd.site/us/en/faqs.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Main content column: FAQs title, image, intro, FAQ accordion",
+          "selector": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .container.responsivegrid.aem-GridColumn--default--8"
+          ],
+          "style": null,
+          "blocks": [
+            "hero",
+            "accordion"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .title.cmp-title--underline h1",
+            "main.cmp-layout-container--fixed .aem-GridColumn--default--8 > .cmp-container > .aem-Grid > .text"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Sidebar: Need more help? contact info",
+          "selector": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .container.responsivegrid.aem-GridColumn--default--3"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .aem-GridColumn--default--3 .title h3",
+            "main.cmp-layout-container--fixed .aem-GridColumn--default--3 .text"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "homepage",
+      "urls": [
+        "https://wknd.site/ca/en.html",
+        "https://wknd.site/ca/fr.html",
+        "https://wknd.site/ch/de.html",
+        "https://wknd.site/ch/fr.html",
+        "https://wknd.site/ch/it.html",
+        "https://wknd.site/de/de.html",
+        "https://wknd.site/es/es.html",
+        "https://wknd.site/fr/fr.html",
+        "https://wknd.site/it/it.html",
+        "https://wknd.site/us/en.html",
+        "https://wknd.site/us/es.html"
+      ],
+      "coverageGaps": [],
+      "description": "Locale home page: hero carousel, featured hero banners and card grids; non-English locales use a reduced single-hero placeholder variant",
+      "blocks": [
+        {
+          "name": "carousel",
+          "instances": [
+            ".carousel.panelcontainer.cmp-carousel--hero"
+          ]
+        },
+        {
+          "name": "hero",
+          "instances": [
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom",
+            "main > .cmp-container > .teaser.cmp-teaser--hero"
+          ]
+        },
+        {
+          "name": "columns-featured",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            "main.cmp-layout-container--fixed .image-list.list"
+          ]
+        }
+      ],
+      "representativeUrl": "https://wknd.site/us/en.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Hero carousel",
+          "selector": [
+            ".carousel.panelcontainer.cmp-carousel--hero",
+            "main > .cmp-container > .teaser.cmp-teaser--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel",
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Featured article + Recent Articles",
+          "selector": [
+            ".teaser.cmp-teaser--featured"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-featured",
+            "cards"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed .teaser.cmp-teaser--featured + .title.cmp-title--underline",
+            "main.cmp-layout-container--fixed .button.cmp-button--primary"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Next Adventures",
+          "selector": [
+            ".separator + .title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "hero",
+            "cards"
+          ],
+          "defaultContent": [
+            ".separator + .title.cmp-title--underline",
+            "main.cmp-layout-container--fixed .title:not(.cmp-title--underline)",
+            "main.cmp-layout-container--fixed .button.cmp-button--primary"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "magazine-article",
+      "urls": [
+        "https://wknd.site/ca/en/magazine/arctic-surfing.html",
+        "https://wknd.site/ca/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/ca/en/magazine/members-only/alaskan-adventure.html",
+        "https://wknd.site/ca/en/magazine/members-only/fly-fishing-the-amazon.html",
+        "https://wknd.site/ca/en/magazine/san-diego-surf.html",
+        "https://wknd.site/ca/en/magazine/ski-touring.html",
+        "https://wknd.site/ca/en/magazine/western-australia.html",
+        "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+        "https://wknd.site/us/en/magazine/san-diego-surf.html",
+        "https://wknd.site/us/en/magazine/ski-touring.html",
+        "https://wknd.site/us/en/magazine/western-australia.html"
+      ],
+      "coverageGaps": [],
+      "description": "Long-form article with hero image, breadcrumbs, title, rich text body, pull quotes and inline images",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .image"
+          ]
+        },
+        {
+          "name": "breadcrumbs",
+          "instances": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .breadcrumb"
+          ]
+        },
+        {
+          "name": "quote",
+          "instances": [
+            "main.cmp-layout-container--fixed .cmp-contentfragment__elements .text:has(blockquote)"
+          ]
+        }
+      ],
+      "representativeUrl": "https://wknd.site/us/en/magazine/arctic-surfing.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Article hero image",
+          "selector": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .image"
+          ],
+          "style": null,
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Article: breadcrumbs, title, byline, body (rich text, inline images, pull quote)",
+          "selector": [
+            "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .breadcrumb"
+          ],
+          "style": null,
+          "blocks": [
+            "breadcrumbs",
+            "quote"
+          ],
+          "defaultContent": [
+            "main.cmp-layout-container--fixed main.container > .cmp-container > .title h1",
+            "main.cmp-layout-container--fixed main.container > .cmp-container > .title h4",
+            "main.cmp-layout-container--fixed .cmp-contentfragment__elements"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Author byline (portrait, name, occupation, social links)",
+          "selector": [
+            "main.cmp-layout-container--fixed main.container .experiencefragment:has(.cmp-byline)"
+          ],
+          "style": "author-bio",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-byline__image img",
+            ".cmp-byline h2.cmp-byline__name",
+            ".cmp-byline p.cmp-byline__occupations",
+            "main.cmp-layout-container--fixed main.container .cmp-buildingblock--btn-list a.cmp-button"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Sidebar: download (PDF) + up-next related articles",
+          "selector": [
+            "main.cmp-layout-container--fixed aside.cmp-layoutcontainer--sidebar"
+          ],
+          "style": "up-next",
+          "blocks": [],
+          "defaultContent": [
+            "aside.cmp-layoutcontainer--sidebar .cmp-download",
+            "aside.cmp-layoutcontainer--sidebar .cmp-list--upnext ul.cmp-list"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

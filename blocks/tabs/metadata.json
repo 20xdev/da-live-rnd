@@ -1,0 +1,199 @@
+{
+  "variantName": "tabs",
+  "baseBlock": "tabs",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "large",
+    "structure": "heading + text + image + list"
+  },
+  "contentPattern": "Tabbed content, one row per tab: first cell is the tab label (e.g. Overview, Itinerary, What to Bring; or category filters like All, Climbing, Cycling), remaining cells are the panel content (heading, text, images with captions, or a list of image teasers that renders as a card grid). Tab buttons sit in a horizontal row above the active panel.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/adventures/bali-surf-camp.html",
+        "instanceId": "3ed66aec",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_bali-surf-camp_html--678b1ddd/blocks/3ed66aec.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/colorado-rock-climbing.html",
+        "instanceId": "6e1bf559",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_colorado-rock-climbing_html--ba9a71ea/blocks/6e1bf559.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/cycling-southern-utah.html",
+        "instanceId": "64deb870",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_cycling-southern-utah_html--a7eaa407/blocks/64deb870.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/gastronomic-marais-tour.html",
+        "instanceId": "2cc45fb9",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_gastronomic-marais-tour_html--2d3bec3d/blocks/2cc45fb9.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/napa-wine-tasting.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_napa-wine-tasting_html--d22cea1f/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/tahoe-skiing.html",
+        "instanceId": "500da7a3",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_tahoe-skiing_html--b72a2731/blocks/500da7a3.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/west-coast-cycling.html",
+        "instanceId": "1234b1e1",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_west-coast-cycling_html--c1cd098d/blocks/1234b1e1.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/yosemite-backpacking.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_yosemite-backpacking_html--2ca1ab0f/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+        "instanceId": "2fc58f02",
+        "screenshot": ".pages/wknd_site_us_en_adventures_bali-surf-camp_html--2e38a9c1/blocks/2fc58f02.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/colorado-rock-climbing.html",
+        "instanceId": "5117736b",
+        "screenshot": ".pages/wknd_site_us_en_adventures_colorado-rock-climbing_html--f78265a4/blocks/5117736b.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/cycling-southern-utah.html",
+        "instanceId": "32dac9e7",
+        "screenshot": ".pages/wknd_site_us_en_adventures_cycling-southern-utah_html--8648ab5a/blocks/32dac9e7.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/gastronomic-marais-tour.html",
+        "instanceId": "69e5fc0c",
+        "screenshot": ".pages/wknd_site_us_en_adventures_gastronomic-marais-tour_html--850c7841/blocks/69e5fc0c.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/napa-wine-tasting.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_napa-wine-tasting_html--a2e48fd5/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/tahoe-skiing.html",
+        "instanceId": "4786666",
+        "screenshot": ".pages/wknd_site_us_en_adventures_tahoe-skiing_html--6b8fe4b0/blocks/4786666.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/west-coast-cycling.html",
+        "instanceId": "75204372",
+        "screenshot": ".pages/wknd_site_us_en_adventures_west-coast-cycling_html--f4ac7a72/blocks/75204372.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/yosemite-backpacking.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_yosemite-backpacking_html--1f18735b/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/climbing-new-zealand.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_climbing-new-zealand_html--23218dc0/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/surf-camp-costa-rica.html",
+        "instanceId": "6734835d",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_surf-camp-costa-rica_html--0f15714d/blocks/6734835d.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/climbing-new-zealand.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_climbing-new-zealand_html--9caa0a92/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/surf-camp-costa-rica.html",
+        "instanceId": "1c9ad4c9",
+        "screenshot": ".pages/wknd_site_us_en_adventures_surf-camp-costa-rica_html--de076791/blocks/1c9ad4c9.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/cycling-tuscany.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_cycling-tuscany_html--3219c3bf/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/downhill-skiing-wyoming.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_downhill-skiing-wyoming_html--8e7a04bd/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/cycling-tuscany.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_cycling-tuscany_html--09782ca4/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/downhill-skiing-wyoming.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_downhill-skiing-wyoming_html--2bfaf893/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/ski-touring-mont-blanc.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_ski-touring-mont-blanc_html--7d366af7/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/whistler-mountain-biking.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_whistler-mountain-biking_html--457f1a78/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/ski-touring-mont-blanc.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_ski-touring-mont-blanc_html--ef585c81/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/whistler-mountain-biking.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_whistler-mountain-biking_html--4a38866b/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/beervana-portland.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_beervana-portland_html--ddf822e6/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/beervana-portland.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_beervana-portland_html--0539e503/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_html--7a455a5e/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures.html",
+        "instanceId": "2f00e970",
+        "screenshot": ".pages/wknd_site_us_en_adventures_html--6fbce216/blocks/2f00e970.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures/riverside-camping-australia.html",
+        "instanceId": "5198f85",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_riverside-camping-australia_html--b621776a/blocks/5198f85.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures/riverside-camping-australia.html",
+        "instanceId": "78798e42",
+        "screenshot": ".pages/wknd_site_us_en_adventures_riverside-camping-australia_html--68edd41a/blocks/78798e42.jpg"
+      }
+    ],
+    "reuseCount": 34
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_ce821482035f",
+    "v_8ab7ece34e9a-1",
+    "v_8ab7ece34e9a-2",
+    "v_8ab7ece34e9a-4",
+    "v_8ab7ece34e9a",
+    "v_8ab7ece34e9a-3",
+    "v_e0f5a3e4d7c8"
+  ]
+}

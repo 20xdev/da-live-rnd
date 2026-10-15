@@ -1,0 +1,25 @@
+{
+  "variantName": "header",
+  "baseBlock": "header",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "colorScheme": "mixed",
+    "complexity": "advanced",
+    "density": "moderate"
+  },
+  "contentPattern": "Global header loaded as a fragment (/nav): brand logo, primary navigation, and tools (search, sign-in, locale). Structure and behaviour are migrated in the dedicated navigation phase.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/magazine.html",
+        "instanceId": "header-global",
+        "screenshot": ".pages/_global/header.jpg"
+      }
+    ],
+    "reuseCount": 1
+  },
+  "options": [],
+  "memberVariantIds": [
+    "header-global"
+  ]
+}

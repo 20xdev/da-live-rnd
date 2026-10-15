@@ -1,0 +1,45 @@
+/* Cards (Trip Facts): structural layout only — brand styling is applied by the design pass. */
+
+.cards-trip-facts > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cards-trip-facts .cards-trip-facts-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid currentcolor;
+  border-left-color: color-mix(in srgb, currentcolor 15%, transparent);
+}
+
+.cards-trip-facts .cards-trip-facts-label,
+.cards-trip-facts .cards-trip-facts-value {
+  overflow-wrap: anywhere;
+}
+
+.cards-trip-facts .cards-trip-facts-label p,
+.cards-trip-facts .cards-trip-facts-value p {
+  margin: 0;
+}
+
+/* Tablet: facts flow into two columns when the block spans full width. */
+@media (width >= 600px) {
+  .cards-trip-facts > ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: back to a single vertical stack (block sits in a narrow sidebar). */
+@media (width >= 900px) {
+  .cards-trip-facts > ul {
+    display: flex;
+    flex-direction: column;
+  }
+}

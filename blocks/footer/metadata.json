@@ -1,0 +1,25 @@
+{
+  "variantName": "footer",
+  "baseBlock": "footer",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "colorScheme": "mixed",
+    "complexity": "simple",
+    "density": "moderate"
+  },
+  "contentPattern": "Global footer loaded as a fragment (/footer): sections of navigation link lists, social links and copyright text. Structure and behaviour are migrated in the dedicated footer phase.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/magazine.html",
+        "instanceId": "footer-global",
+        "screenshot": ".pages/_global/footer.jpg"
+      }
+    ],
+    "reuseCount": 1
+  },
+  "options": [],
+  "memberVariantIds": [
+    "footer-global"
+  ]
+}

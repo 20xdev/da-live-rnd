@@ -1,0 +1,28 @@
+{
+  "variantName": "search",
+  "baseBlock": "search",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "text + 5 CTAs + list"
+  },
+  "contentPattern": "Site search box: full-width input with a magnifier icon and placeholder text, plus an optional on/off toggle (e.g. 'Show AI-generated summary') below it. Authored as plain text cells (placeholder, then toggle label) and an optional link to the query index; results render as a list beneath.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/us/en/ai-powered-search.html",
+        "instanceId": "1cf4529c",
+        "screenshot": ".pages/wknd_site_us_en_ai-powered-search_html--99e1d2ff/blocks/1cf4529c.jpg"
+      }
+    ],
+    "reuseCount": 1
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_9f1b9f67bda6-1"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "variantName": "cards",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "large",
+    "structure": "5 images + list"
+  },
+  "contentPattern": "Collection of article/adventure teaser cards, one row per card: image cell plus a body cell with a linked title (heading) and a short description. Rendered as a responsive grid (4 per row on desktop) with the image on top.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/magazine.html",
+        "instanceId": "71161d61",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_html--504dde31/blocks/71161d61.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine.html",
+        "instanceId": "71161d61",
+        "screenshot": ".pages/wknd_site_us_en_magazine_html--17b58a0b/blocks/71161d61.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en.html",
+        "instanceId": "2f34cf28",
+        "screenshot": ".pages/wknd_site_ca_en_html--75e40e45/blocks/2f34cf28.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en.html",
+        "instanceId": "23f41a69",
+        "screenshot": ".pages/wknd_site_us_en_html--c76865e0/blocks/23f41a69.jpg"
+      }
+    ],
+    "reuseCount": 4
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_096172ab7f4e",
+    "v_6743ad78580a"
+  ]
+}

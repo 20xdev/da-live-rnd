@@ -1,0 +1,45 @@
+{
+  "variantName": "quote",
+  "baseBlock": "quote",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "large",
+    "structure": "heading + image"
+  },
+  "contentPattern": "Pull quote with an optional image. Rows render in authored order: an image-only cell becomes the full-width image, the first text cell is the quotation, and any later text cell is the attribution (e.g. '- Sofia Sjoberg').",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/magazine/arctic-surfing.html",
+        "instanceId": "4017f8a4",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_arctic-surfing_html--6cb56981/blocks/4017f8a4.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "instanceId": "4017f8a4",
+        "screenshot": ".pages/wknd_site_us_en_magazine_arctic-surfing_html--7ce71719/blocks/4017f8a4.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/ski-touring.html",
+        "instanceId": "4017f8a4",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_ski-touring_html--fbda622a/blocks/4017f8a4.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/ski-touring.html",
+        "instanceId": "4017f8a4",
+        "screenshot": ".pages/wknd_site_us_en_magazine_ski-touring_html--b1aaea2d/blocks/4017f8a4.jpg"
+      }
+    ],
+    "reuseCount": 4,
+    "lastUsed": "2026-10-15T03:06:22Z"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_b7118a52fdcc",
+    "v_b7118a52fdcc-1"
+  ]
+}

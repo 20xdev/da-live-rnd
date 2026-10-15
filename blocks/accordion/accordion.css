@@ -1,0 +1,69 @@
+/* Accordion - structural styles only (design pass applies brand styling) */
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion .accordion-item {
+  border-bottom: 1px solid currentcolor;
+}
+
+.accordion .accordion-item-label {
+  position: relative;
+  display: block;
+  padding: 0.75em 2.5em 0.75em 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion .accordion-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion .accordion-item-label > * {
+  margin: 0;
+}
+
+/* plus / minus indicator */
+.accordion .accordion-item-label::before,
+.accordion .accordion-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  width: 1em;
+  height: 2px;
+  background-color: currentcolor;
+  transform: translateY(-50%);
+  transition: transform 0.2s;
+}
+
+.accordion .accordion-item-label::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.accordion .accordion-item[open] .accordion-item-label::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.accordion .accordion-item-body {
+  padding: 0 0 1em;
+}
+
+.accordion .accordion-item-body > :first-child {
+  margin-top: 0;
+}
+
+.accordion .accordion-item-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .accordion .accordion-item-label {
+    padding-left: 1em;
+  }
+
+  .accordion .accordion-item-body {
+    padding: 0 1em 1em;
+  }
+}

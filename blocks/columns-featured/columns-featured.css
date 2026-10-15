@@ -1,0 +1,68 @@
+/* Columns Featured: structural layout only; brand styling is applied by the design pass. */
+.columns-featured .columns-featured-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-featured .columns-featured-image {
+  order: 0;
+}
+
+.columns-featured .columns-featured-content {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+}
+
+.columns-featured .columns-featured-image picture,
+.columns-featured .columns-featured-image img {
+  display: block;
+  width: 100%;
+}
+
+.columns-featured .columns-featured-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.columns-featured .columns-featured-content > :first-child {
+  margin-top: 0;
+}
+
+.columns-featured .columns-featured-content > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 600px) {
+  .columns-featured .columns-featured-content {
+    padding: 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .columns-featured .columns-featured-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .columns-featured .columns-featured-image {
+    flex: 0 0 62%;
+  }
+
+  .columns-featured .columns-featured-content {
+    flex: 1 1 38%;
+    order: unset;
+  }
+
+  .columns-featured .columns-featured-no-image .columns-featured-content {
+    flex-basis: 100%;
+  }
+}
+
+@media (width >= 1200px) {
+  .columns-featured .columns-featured-content {
+    padding: 40px;
+  }
+}

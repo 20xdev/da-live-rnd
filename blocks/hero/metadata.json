@@ -1,0 +1,188 @@
+{
+  "variantName": "hero",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "large",
+    "structure": "image"
+  },
+  "contentPattern": "Single-row banner: a large image cell plus optional content (heading, short text, CTAs). Catalog instances range from image-only banners, to an image with a heading/text panel overlapping its lower edge, to a centred profile layout (round portrait, name, role line, social links).",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/faqs.html",
+        "instanceId": "218140d2",
+        "screenshot": ".pages/wknd_site_ca_en_faqs_html--863a2b0c/blocks/218140d2.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/arctic-surfing.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_arctic-surfing_html--6cb56981/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/guide-la-skateparks.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_guide-la-skateparks_html--13006f5d/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/members-only/alaskan-adventure.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_members-only_alaskan-adventure_html--df129cf6/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/members-only/fly-fishing-the-amazon.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_members-only_fly-fishing-the-amazon_html--617a9329/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/san-diego-surf.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_san-diego-surf_html--3550c5e8/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/ski-touring.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_ski-touring_html--fbda622a/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/western-australia.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_western-australia_html--6ad76b5e/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/faqs.html",
+        "instanceId": "218140d2",
+        "screenshot": ".pages/wknd_site_us_en_faqs_html--1afb5043/blocks/218140d2.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/arctic-surfing.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_us_en_magazine_arctic-surfing_html--7ce71719/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/guide-la-skateparks.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_us_en_magazine_guide-la-skateparks_html--d457f548/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/san-diego-surf.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_us_en_magazine_san-diego-surf_html--efb2a09c/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/ski-touring.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_us_en_magazine_ski-touring_html--b1aaea2d/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine/western-australia.html",
+        "instanceId": "15efbb5e",
+        "screenshot": ".pages/wknd_site_us_en_magazine_western-australia_html--77a25244/blocks/15efbb5e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en.html",
+        "instanceId": "46d372ec",
+        "screenshot": ".pages/wknd_site_ca_en_html--75e40e45/blocks/46d372ec.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/fr.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_ca_fr_html--c54edba1/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/ch/de.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_ch_de_html--a9abbc3f/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/ch/fr.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_ch_fr_html--f1fccf96/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/ch/it.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_ch_it_html--6d0297e1/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/de/de.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_de_de_html--049288fd/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/es/es.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_es_es_html--0f82d69e/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/fr/fr.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_fr_fr_html--a5c37db0/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/it/it.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_it_it_html--d974d394/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en.html",
+        "instanceId": "78b5b3",
+        "screenshot": ".pages/wknd_site_us_en_html--c76865e0/blocks/78b5b3.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/es.html",
+        "instanceId": "1e5528c6",
+        "screenshot": ".pages/wknd_site_us_es_html--2e12e1e5/blocks/1e5528c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/adventures.html",
+        "instanceId": "780af56e",
+        "screenshot": ".pages/wknd_site_ca_en_adventures_html--7a455a5e/blocks/780af56e.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine.html",
+        "instanceId": "2e2212c6",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_html--504dde31/blocks/2e2212c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/adventures.html",
+        "instanceId": "780af56e",
+        "screenshot": ".pages/wknd_site_us_en_adventures_html--6fbce216/blocks/780af56e.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/magazine.html",
+        "instanceId": "2e2212c6",
+        "screenshot": ".pages/wknd_site_us_en_magazine_html--17b58a0b/blocks/2e2212c6.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/about-us.html",
+        "instanceId": "30adc149",
+        "screenshot": ".pages/wknd_site_ca_en_about-us_html--b9bd0d7b/blocks/30adc149.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/about-us.html",
+        "instanceId": "6f668be4",
+        "screenshot": ".pages/wknd_site_us_en_about-us_html--c258e453/blocks/6f668be4.jpg"
+      },
+      {
+        "url": "https://wknd.site/ca/en/magazine/members-only.html",
+        "instanceId": "1cf4529c",
+        "screenshot": ".pages/wknd_site_ca_en_magazine_members-only_html--c8e9e4dd/blocks/1cf4529c.jpg"
+      }
+    ],
+    "reuseCount": 32,
+    "lastUsed": "2026-10-15T03:06:22Z"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_64d7a45c1296",
+    "v_dc85ed9612bf",
+    "v_ce80ccd0f1fa",
+    "v_04d141a53172",
+    "v_9f1b9f67bda6"
+  ]
+}

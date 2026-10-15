@@ -1,0 +1,56 @@
+/* Quote - structural styles only (design pass applies brand styling) */
+.quote .quote-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin: 0;
+}
+
+.quote .quote-image {
+  line-height: 0;
+}
+
+.quote .quote-image picture,
+.quote .quote-image img {
+  display: block;
+  width: 100%;
+}
+
+.quote .quote-image img {
+  height: auto;
+  object-fit: cover;
+}
+
+.quote .quote-quotation {
+  margin: 0;
+  padding: 0 1em;
+}
+
+.quote .quote-quotation > :first-child {
+  margin-top: 0;
+}
+
+.quote .quote-quotation > :last-child {
+  margin-bottom: 0;
+}
+
+.quote .quote-attribution {
+  padding: 0 1em;
+}
+
+.quote .quote-attribution > * {
+  margin: 0;
+}
+
+/* image + quotation: quotation sits in its own panel below the image */
+.quote.quote-has-image .quote-image + .quote-quotation {
+  padding: 1.5em 1em 0;
+}
+
+@media (width >= 900px) {
+  .quote .quote-quotation,
+  .quote .quote-attribution {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}

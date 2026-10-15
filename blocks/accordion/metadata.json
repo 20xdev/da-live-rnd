@@ -1,0 +1,34 @@
+{
+  "variantName": "accordion",
+  "baseBlock": "accordion",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "hasBackgroundImage": false,
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "heading + text + 7 CTAs"
+  },
+  "contentPattern": "One row per FAQ item: first cell holds the question (label), second cell holds the answer (rich text). Items stack vertically with a divider and a plus/minus toggle on the right.",
+  "usage": {
+    "pagesUsing": [
+      {
+        "url": "https://wknd.site/ca/en/faqs.html",
+        "instanceId": "34814720",
+        "screenshot": ".pages/wknd_site_ca_en_faqs_html--863a2b0c/blocks/34814720.jpg"
+      },
+      {
+        "url": "https://wknd.site/us/en/faqs.html",
+        "instanceId": "34814720",
+        "screenshot": ".pages/wknd_site_us_en_faqs_html--1afb5043/blocks/34814720.jpg"
+      }
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-10-15T02:54:22.751Z"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_4ecd3661fdd5"
+  ]
+}
