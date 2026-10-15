@@ -11,6 +11,7 @@
  *       h2.cmp-teaser__title only (no description / CTA) + lazy image (data-cmp-src with {.width}, relative src)
  *
  * Output (hero block, 1 column): row 1 = [image] (optional), row 2 = [title, description, CTA] (each optional).
+ * Block name is `Hero (image-bottom)` when the source teaser has cmp-teaser--imagebottom, else `Hero`.
  */
 
 const FALLBACK_ORIGIN = 'https://wknd.site';
@@ -112,8 +113,11 @@ export default function parse(element, { document }) {
       const link = document.createElement('a');
       link.href = a.getAttribute('href') || '';
       link.textContent = a.textContent.trim();
+      // Source teaser CTAs render as yellow buttons -> <strong> = EDS primary button.
+      const strong = document.createElement('strong');
+      strong.append(link);
       const p = document.createElement('p');
-      p.append(link);
+      p.append(strong);
       content.push(p);
     });
 
@@ -126,6 +130,14 @@ export default function parse(element, { document }) {
   if (image) cells.push([image]);
   if (content.length) cells.push([content]);
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'hero', cells });
+  // Variant: source teasers styled cmp-teaser--imagebottom (homepage "Next Adventures") anchor
+  // the cropped image to its bottom edge -> `Hero (image-bottom)`.
+  const IMAGE_BOTTOM = '.cmp-teaser--imagebottom';
+  const imageBottom = (element.matches && element.matches(IMAGE_BOTTOM))
+    || !!(element.closest && element.closest(IMAGE_BOTTOM))
+    || !!element.querySelector(IMAGE_BOTTOM);
+  const variants = imageBottom ? ['image-bottom'] : [];
+
+  const block = WebImporter.Blocks.createBlock(document, { name: 'hero', variants, cells });
   element.replaceWith(block);
 }

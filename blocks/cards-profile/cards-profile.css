@@ -1,31 +1,44 @@
-/* Cards (Profile): structural layout only — brand styling is applied by the design pass. */
+/*
+ * Cards (Profile) — WKND contributor / guide grid.
+ * Values from source computed styles (migration-work/cards-profile-extracted.css).
+ * Source grid: 1 column < 768px, 2 columns 768-1024px, 4 columns > 1024px.
+ */
 
 .cards-profile > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+
+  /* source columns are 291px with 2 x 14px inner padding; in the 1136px content box
+     that is a 28px column gap + 14px item padding; rows have no gap */
+  gap: 0 28px;
 }
 
 .cards-profile > ul > li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   min-width: 0;
+  padding: 9px 14px 18px;
+  color: var(--text-color);
+  text-align: center;
 }
 
+/* portrait: 164px circle, 7px vertical margin, plus the 7px inline baseline gap
+   the source image leaves below itself (image container is 185px tall) */
 .cards-profile .cards-profile-image {
   line-height: 0;
-  width: 164px;
-  max-width: 100%;
+  padding-bottom: 7px;
 }
 
 .cards-profile .cards-profile-image img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  display: block;
+  width: 164px;
+  max-width: 100%;
+  height: 164px;
+  margin: 7px 0;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -34,24 +47,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   overflow-wrap: anywhere;
 }
 
-.cards-profile .cards-profile-name,
-.cards-profile .cards-profile-body p {
-  margin-bottom: 0;
+/* name: Asar 24px / 36px */
+.cards-profile .cards-profile-name {
+  margin: 0 0 6px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--heading-font-weight);
+  line-height: 36px;
 }
 
+/* roles: source renders this as an h5 (Source Sans Pro 14px / 600 / uppercase) */
 .cards-profile .cards-profile-roles {
-  margin-top: 0.5em;
+  margin: 0 0 3.5px;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: var(--heading-font-weight-alt);
+  line-height: 21px;
+  text-transform: uppercase;
 }
 
-/* Social links: a compact bar of icon-only buttons */
+/* social links: a bar of adjoining 48px dark icon buttons */
 .cards-profile .cards-profile-social {
   list-style: none;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  display: inline-flex;
+  margin: 0;
+  padding: 18px 0 0;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -60,23 +86,62 @@
   display: flex;
 }
 
-.cards-profile .cards-profile-social-link {
-  display: inline-flex;
+.cards-profile .cards-profile-social a.cards-profile-social-link:any-link {
+  box-sizing: border-box;
+  display: flex;
   align-items: center;
   justify-content: center;
   min-width: 48px;
-  min-height: 48px;
-  color: inherit;
+  height: 48px;
+  background-color: var(--brand-secondary);
+  color: var(--text-color-inverse);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* source has no hover change on these buttons */
+.cards-profile .cards-profile-social a.cards-profile-social-link:hover {
+  color: var(--text-color-inverse);
   text-decoration: none;
 }
 
-.cards-profile .cards-profile-social-link svg {
-  display: block;
+.cards-profile .cards-profile-social a.cards-profile-social-link:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
-.cards-profile .cards-profile-social-text {
-  padding: 0 0.75rem;
-  text-decoration: underline;
+/* icons sized and offset to the source glyph pixels (17.5px icon font, drawn from
+   padding 18px 0 0 14px): f 9x18 at (13,17), bird 21x17 at (14,18), camera 18x18 at (13,17) */
+.cards-profile .cards-profile-social-link svg {
+  display: block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  translate: 0 2px;
+}
+
+.cards-profile .cards-profile-social-facebook svg {
+  translate: -6px 2px;
+}
+
+.cards-profile .cards-profile-social-twitter svg {
+  width: 26px;
+  height: 26px;
+}
+
+.cards-profile .cards-profile-social-instagram svg {
+  width: 22px;
+  height: 22px;
+  translate: -2px 2px;
+}
+
+/* unknown networks fall back to a text button */
+.cards-profile .cards-profile-social a.cards-profile-social-text:any-link {
+  padding: 0 14px;
 }
 
 .cards-profile .cards-profile-social-label {
@@ -91,13 +156,13 @@
   border: 0;
 }
 
-@media (width >= 600px) {
+@media (width >= 768px) {
   .cards-profile > ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (width >= 900px) {
+@media (width > 1024px) {
   .cards-profile > ul {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

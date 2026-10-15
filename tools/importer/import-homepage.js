@@ -81,7 +81,7 @@ const PAGE_TEMPLATE = {
       id: '2',
       name: 'Featured article + Recent Articles',
       selector: ['.teaser.cmp-teaser--featured'],
-      style: null,
+      style: 'title-underline',
       blocks: ['columns-featured', 'cards'],
       defaultContent: [
         'main.cmp-layout-container--fixed .teaser.cmp-teaser--featured + .title.cmp-title--underline',
@@ -92,7 +92,7 @@ const PAGE_TEMPLATE = {
       id: '3',
       name: 'Next Adventures',
       selector: ['.separator + .title.cmp-title--underline'],
-      style: null,
+      style: 'title-underline',
       blocks: ['hero', 'cards'],
       defaultContent: [
         '.separator + .title.cmp-title--underline',

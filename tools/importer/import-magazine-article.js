@@ -6,7 +6,8 @@
  * Sample URL: https://wknd.site/us/en/magazine/arctic-surfing.html
  *
  * Magazine articles (/us/en/magazine/*, /ca/en/magazine/* incl. members-only, migrated as the
- * statically rendered public page): image-only hero; then the article section (breadcrumbs,
+ * statically rendered public page): image-only hero; breadcrumbs (own section: both span the
+ * full width above the article/sidebar columns on the source); then the article section (
  * H1 title, "By <author>" H4, long-form content-fragment body with H2s, paragraphs, inline
  * images and an optional pull quote -> quote block); author byline (section style author-bio);
  * sidebar with optional PDF download link (kept pointing at the source PDF) and the up-next
@@ -84,13 +85,24 @@ const PAGE_TEMPLATE = {
     },
     {
       "id": "2",
-      "name": "Article: breadcrumbs, title, byline, body (rich text, inline images, pull quote)",
+      "name": "Breadcrumbs (full width, above the article and sidebar columns)",
       "selector": [
         "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .breadcrumb"
       ],
       "style": null,
       "blocks": [
-        "breadcrumbs",
+        "breadcrumbs"
+      ],
+      "defaultContent": []
+    },
+    {
+      "id": "3",
+      "name": "Article: title, byline, body (rich text, inline images, pull quote)",
+      "selector": [
+        "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > main.container"
+      ],
+      "style": "title-underline-h2",
+      "blocks": [
         "quote"
       ],
       "defaultContent": [
@@ -100,7 +112,7 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
-      "id": "3",
+      "id": "4",
       "name": "Author byline (portrait, name, occupation, social links)",
       "selector": [
         "main.cmp-layout-container--fixed main.container .experiencefragment:has(.cmp-byline)"
@@ -115,7 +127,7 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
-      "id": "4",
+      "id": "5",
       "name": "Sidebar: download (PDF) + up-next related articles",
       "selector": [
         "main.cmp-layout-container--fixed aside.cmp-layoutcontainer--sidebar"
@@ -228,7 +240,13 @@ export default {
     // 5. WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
-    WebImporter.rules.createMetadata(main, document);
+    // Page metadata + `Template` (aem.js decorateTemplateAndTheme adds it as a body class;
+    // styles.css uses body.magazine-article for the main column + right sidebar layout).
+    const meta = WebImporter.Blocks.getMetadata(document) || {};
+    // Lowercase key: the pipeline lowercases metadata names anyway (-> meta[name="template"]),
+    // and the local html-folder preview does not, so `Template` would not reach getMetadata().
+    meta.template = PAGE_TEMPLATE.name;
+    main.append(WebImporter.Blocks.getMetadataBlock(document, meta));
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 

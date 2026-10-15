@@ -123,7 +123,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         "main.cmp-layout-container--fixed .title.cmp-title--underline"
       ],
-      "style": null,
+      "style": "title-underline",
       "blocks": [],
       "defaultContent": [
         "main.cmp-layout-container--fixed .title.cmp-title--underline h1"

@@ -19,6 +19,44 @@ function selectTab(block, button) {
   });
 }
 
+/* card = image + linked title + description; any part may be missing */
+function decorateCard(li) {
+  li.classList.add('tabs-card');
+  // wrap stray inline content so every part is a block we can classify
+  [...li.childNodes].forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+      const p = document.createElement('p');
+      node.replaceWith(p);
+      p.append(node);
+    } else if (node.nodeName === 'PICTURE' || node.nodeName === 'A') {
+      const p = document.createElement('p');
+      node.replaceWith(p);
+      p.append(node);
+    }
+  });
+  let link;
+  [...li.children].forEach((part) => {
+    if (part.querySelector('picture')) {
+      part.classList.add('tabs-card-image');
+    } else if (!link && part.querySelector('a') && part.textContent.trim() === part.querySelector('a').textContent.trim()) {
+      part.classList.add('tabs-card-title');
+      link = part.querySelector('a');
+    } else {
+      part.classList.add('tabs-card-description');
+    }
+  });
+  // image links to the same page as the title (duplicate link hidden from AT)
+  const picture = li.querySelector('.tabs-card-image picture');
+  if (link && picture && !picture.closest('a')) {
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.tabIndex = -1;
+    a.setAttribute('aria-hidden', 'true');
+    picture.replaceWith(a);
+    a.append(picture);
+  }
+}
+
 function decoratePanel(panel) {
   panel.querySelectorAll('picture > img').forEach((img) => {
     img.closest('picture').replaceWith(
@@ -29,7 +67,8 @@ function decoratePanel(panel) {
     const items = [...ul.children];
     if (items.length && items.some((li) => li.querySelector('picture'))) {
       ul.classList.add('tabs-cards');
-      items.forEach((li) => li.classList.add('tabs-card'));
+      panel.classList.add('tabs-panel-cards');
+      items.forEach(decorateCard);
     }
   });
 }
@@ -58,6 +97,10 @@ export default function decorate(block) {
     panel.setAttribute('aria-labelledby', tabId);
     contentCells.forEach((cell) => panel.append(...cell.childNodes));
     decoratePanel(panel);
+    // text-only panels must still be reachable by keyboard (WAI-ARIA tabs pattern)
+    if (!panel.querySelector('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])')) {
+      panel.tabIndex = 0;
+    }
     panels.push(panel);
 
     const button = document.createElement('button');

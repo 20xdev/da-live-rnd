@@ -45,5 +45,6 @@ export default function decorate(block) {
   });
 
   if (figure.querySelector('.quote-image')) block.classList.add('quote-has-image');
+  if (figure.querySelector('.quote-attribution')) block.classList.add('quote-has-attribution');
   block.replaceChildren(figure);
 }

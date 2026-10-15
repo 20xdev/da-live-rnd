@@ -1,44 +1,69 @@
-/* Tabs - structural styles only (design pass applies brand styling) */
+/*
+ * Tabs - WKND cmp-tabs look (values from source computed styles).
+ * Two panel shapes, detected by content (see tabs.js):
+ *  - rich text (adventure detail: Overview / Itinerary / What to Bring)
+ *  - card grid (adventures listing: a list of image teasers -> .tabs-cards)
+ */
+
+/* tab list */
 .tabs .tabs-list {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.tabs .tabs-list::-webkit-scrollbar {
-  display: none;
+  flex-wrap: wrap;
+  margin: 18px 0;
+  padding: 0;
 }
 
 .tabs .tabs-tab {
-  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-width: 48px;
+  max-height: 48px;
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 8px 16px;
   border: 0;
+  border-bottom: 1px solid transparent;
   border-radius: 0;
   background: none;
-  color: inherit;
-  font: inherit;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
 }
 
-/* neutral active indicator; the design pass replaces it with the brand treatment */
 .tabs .tabs-tab[aria-selected='true'] {
-  box-shadow: inset 0 -2px 0 currentcolor;
+  background-color: var(--text-color);
+  color: #fff;
 }
 
+.tabs .tabs-tab:focus {
+  outline: none;
+}
+
+.tabs .tabs-tab:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* panels (flow-root: child margins don't collapse into the tab list margin, as on source) */
 .tabs .tabs-panel {
-  padding-top: 1.5em;
+  display: flow-root;
+}
+
+.tabs .tabs-panel:focus {
+  outline: none;
+}
+
+.tabs .tabs-panel:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .tabs .tabs-panel[hidden] {
   display: none;
-}
-
-.tabs .tabs-panel > :first-child {
-  margin-top: 0;
 }
 
 .tabs .tabs-panel picture,
@@ -48,39 +73,121 @@
   height: auto;
 }
 
-/* teaser list inside a panel renders as a card grid */
+/* rich-text panel */
+.tabs .tabs-panel > p {
+  margin: 0 0 13.5px;
+  line-height: var(--paragraph-line-height);
+  text-align: justify;
+}
+
+/* source: inline img with 7px margins in a 27px line box (padding avoids margin collapse) */
+.tabs .tabs-panel > p:has(> picture) {
+  margin: 0;
+  padding: 7px 0 14px;
+  line-height: var(--body-line-height);
+}
+
+.tabs .tabs-panel strong,
+.tabs .tabs-panel b {
+  font-weight: 700;
+}
+
+.tabs .tabs-panel > ul:not(.tabs-cards) {
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs .tabs-panel > ul:not(.tabs-cards) > li {
+  padding-left: 12px;
+  line-height: 2;
+}
+
+/* WKND icon-font right-pointing triangle bullet */
+.tabs .tabs-panel > ul:not(.tabs-cards) > li::before {
+  content: '';
+  display: inline-block;
+  position: relative;
+  left: -6px;
+  top: -2px;
+  margin-right: 4px;
+  border-block: 4px solid transparent;
+  border-left: 6px solid currentcolor;
+  vertical-align: middle;
+}
+
+/* card grid panel (WKND cmp-image-list) */
 .tabs .tabs-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.tabs .tabs-card {
+  flex: 0 1 260px;
+  min-width: 0;
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+.tabs .tabs-card > * {
+  margin: 0;
+}
+
+.tabs .tabs-card-image {
+  margin-bottom: 7px;
+}
+
+.tabs .tabs-card-image a {
+  display: block;
+}
+
 .tabs .tabs-card img {
-  aspect-ratio: 4 / 3;
+  height: 200px;
   object-fit: cover;
+  object-position: center center;
 }
 
-.tabs .tabs-card > :not(picture, p:has(> picture)) {
-  margin: 0.5em 0 0;
+/* title */
+.tabs .tabs-card-title {
+  line-height: 27px;
 }
 
-@media (width >= 600px) {
+.tabs .tabs-card-title a:any-link,
+main .tabs .tabs-card-title a.button:any-link {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.tabs .tabs-card-title a:hover {
+  text-decoration: none;
+}
+
+/* description (single line, ellipsis) */
+.tabs .tabs-card-description {
+  margin-top: 16px;
+  overflow: hidden;
+  color: var(--text-color-muted);
+  font-size: var(--body-font-size-s);
+  line-height: 21px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (width >= 768px) {
   .tabs .tabs-cards {
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: normal;
   }
-}
 
-@media (width >= 900px) {
-  .tabs .tabs-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (width >= 1200px) {
-  .tabs .tabs-cards {
-    grid-template-columns: repeat(4, 1fr);
+  .tabs .tabs-card {
+    padding-right: 14px;
   }
 }

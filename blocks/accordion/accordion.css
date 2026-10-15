@@ -1,53 +1,107 @@
-/* Accordion - structural styles only (design pass applies brand styling) */
+/*
+ * Accordion (WKND FAQ style)
+ * Values extracted from wknd.site .cmp-accordion computed styles.
+ * Source has no breakpoint-specific accordion styles; the block fills its container width.
+ */
 .accordion {
   display: flex;
   flex-direction: column;
+  color: var(--text-color);
 }
 
 .accordion .accordion-item {
-  border-bottom: 1px solid currentcolor;
+  margin: 0;
+  padding: 0;
 }
 
+/* question row (source: .cmp-accordion__button) */
 .accordion .accordion-item-label {
   position: relative;
   display: block;
-  padding: 0.75em 2.5em 0.75em 0;
+  padding: 13.333px calc(13.333px + 21px) 13.333px 13.333px;
+  border-bottom: 2px solid var(--border-color);
+  background: none;
+  color: rgb(0 0 0);
   cursor: pointer;
   list-style: none;
+  text-align: left;
 }
 
 .accordion .accordion-item-label::-webkit-details-marker {
   display: none;
 }
 
-.accordion .accordion-item-label > * {
-  margin: 0;
+.accordion .accordion-item-label:focus {
+  outline: none;
 }
 
-/* plus / minus indicator */
+.accordion .accordion-item-label:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: calc(-1 * var(--focus-outline-offset));
+}
+
+/* question text (source: .cmp-accordion__title) */
+.accordion .accordion-item-label > * {
+  margin: 0;
+  padding-left: 8px;
+  color: inherit;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: var(--heading-font-weight-alt);
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+/* plus / minus icon (source: wknd-icon-font glyphs, 21x20 box, 2px strokes) */
 .accordion .accordion-item-label::before,
 .accordion .accordion-item-label::after {
   content: '';
   position: absolute;
-  top: 50%;
-  right: 0.5em;
-  width: 1em;
-  height: 2px;
   background-color: currentcolor;
-  transform: translateY(-50%);
-  transition: transform 0.2s;
 }
 
+/* horizontal stroke */
+.accordion .accordion-item-label::before {
+  top: calc(13.333px + 9px);
+  right: 13.333px;
+  width: 21px;
+  height: 2px;
+}
+
+/* vertical stroke (hidden when open -> minus) */
 .accordion .accordion-item-label::after {
-  transform: translateY(-50%) rotate(90deg);
+  top: 13.333px;
+  right: calc(13.333px + 9.5px);
+  width: 2px;
+  height: 20px;
 }
 
-.accordion .accordion-item[open] .accordion-item-label::after {
-  transform: translateY(-50%) rotate(0deg);
+.accordion .accordion-item[open] > .accordion-item-label {
+  border-bottom: none;
 }
 
+.accordion .accordion-item[open] > .accordion-item-label::after {
+  display: none;
+}
+
+/* answer panel (source: .cmp-accordion__panel) */
 .accordion .accordion-item-body {
-  padding: 0 0 1em;
+  padding: 7px 0 13.5px 7px;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: 1.75;
+  text-align: justify;
+}
+
+.accordion .accordion-item[open] > .accordion-item-body {
+  animation: accordion-fade-in 0.5s both;
+}
+
+.accordion .accordion-item-body p {
+  margin: 0 0 13.5px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.75;
+  text-align: justify;
 }
 
 .accordion .accordion-item-body > :first-child {
@@ -58,12 +112,18 @@
   margin-bottom: 0;
 }
 
-@media (width >= 900px) {
-  .accordion .accordion-item-label {
-    padding-left: 1em;
+@keyframes accordion-fade-in {
+  from {
+    opacity: 0;
   }
 
-  .accordion .accordion-item-body {
-    padding: 0 1em 1em;
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion .accordion-item[open] > .accordion-item-body {
+    animation: none;
   }
 }

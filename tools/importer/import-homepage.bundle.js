@@ -128,8 +128,10 @@ var CustomImportScript = (() => {
       const link = document2.createElement("a");
       link.href = a.getAttribute("href") || "";
       link.textContent = a.textContent.trim();
+      const strong = document2.createElement("strong");
+      strong.append(link);
       const p = document2.createElement("p");
-      p.append(link);
+      p.append(strong);
       content.push(p);
     });
     return content;
@@ -242,8 +244,10 @@ var CustomImportScript = (() => {
       const link = document2.createElement("a");
       link.href = a.getAttribute("href") || "";
       link.textContent = a.textContent.trim();
+      const strong = document2.createElement("strong");
+      strong.append(link);
       const p = document2.createElement("p");
-      p.append(link);
+      p.append(strong);
       content.push(p);
     });
     if (!image && !content.length) {
@@ -253,7 +257,10 @@ var CustomImportScript = (() => {
     const cells = [];
     if (image) cells.push([image]);
     if (content.length) cells.push([content]);
-    const block = WebImporter.Blocks.createBlock(document2, { name: "hero", cells });
+    const IMAGE_BOTTOM = ".cmp-teaser--imagebottom";
+    const imageBottom = element.matches && element.matches(IMAGE_BOTTOM) || !!(element.closest && element.closest(IMAGE_BOTTOM)) || !!element.querySelector(IMAGE_BOTTOM);
+    const variants = imageBottom ? ["image-bottom"] : [];
+    const block = WebImporter.Blocks.createBlock(document2, { name: "hero", variants, cells });
     element.replaceWith(block);
   }
 
@@ -350,8 +357,10 @@ var CustomImportScript = (() => {
       const link = document2.createElement("a");
       link.href = a.getAttribute("href") || "";
       link.textContent = a.textContent.trim();
+      const strong = document2.createElement("strong");
+      strong.append(link);
       const p = document2.createElement("p");
-      p.append(link);
+      p.append(strong);
       content.push(p);
     });
     if (!image && !content.length) {
@@ -425,7 +434,80 @@ var CustomImportScript = (() => {
     if (title) out.title = title;
     return out;
   }
+  var TEASER_RUN_SELECTOR = ".teaser.cmp-teaser--secure";
+  function teaserRow(teaserEl, document2) {
+    const teaser = teaserEl.querySelector(".cmp-teaser") || teaserEl;
+    const titleEl = teaser.querySelector(".cmp-teaser__title") || teaser.querySelector("h1, h2, h3, h4");
+    const titleText = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
+    const actions = [...teaser.querySelectorAll(".cmp-teaser__action-container a[href], a.cmp-teaser__action-link[href]")].filter((a, i, arr) => arr.indexOf(a) === i);
+    const titleLinkEl = titleEl && (titleEl.querySelector("a[href]") || titleEl.closest("a[href]")) || teaser.querySelector("a.cmp-teaser__title-link[href]") || actions[0];
+    const href = titleLinkEl ? titleLinkEl.getAttribute("href") : "";
+    const image = resolveImage4(
+      teaser.querySelector(".cmp-teaser__image") || teaser.querySelector(".cmp-image, img"),
+      document2,
+      titleText
+    );
+    const body = [];
+    if (titleText) {
+      const h = document2.createElement("h3");
+      if (href) {
+        const a = document2.createElement("a");
+        a.href = href;
+        a.textContent = titleText;
+        h.append(a);
+      } else {
+        h.textContent = titleText;
+      }
+      body.push(h);
+    }
+    const desc = teaser.querySelector(".cmp-teaser__description");
+    if (desc && desc.textContent.trim()) {
+      const paras = [...desc.querySelectorAll(":scope > p")].map((p) => p.textContent.replace(/\s+/g, " ").trim()).filter(Boolean);
+      (paras.length ? paras : [desc.textContent.replace(/\s+/g, " ").trim()]).forEach((t) => {
+        const p = document2.createElement("p");
+        p.textContent = t;
+        body.push(p);
+      });
+    }
+    actions.forEach((a) => {
+      const text = a.textContent.replace(/\s+/g, " ").trim();
+      if (!text) return;
+      const link = document2.createElement("a");
+      link.href = a.getAttribute("href");
+      link.textContent = text;
+      const p = document2.createElement("p");
+      p.append(link);
+      body.push(p);
+    });
+    [...teaser.querySelectorAll(".cmp-teaser__action-container")].filter((c) => !c.querySelector("a[href]")).forEach((c) => {
+      const label = c.textContent.replace(/\s+/g, " ").trim();
+      if (!label) return;
+      const p = document2.createElement("p");
+      p.textContent = label;
+      body.push(p);
+    });
+    if (!image && !body.length) return null;
+    return [image || "", body.length ? body : ""];
+  }
   function parse4(element, { document: document2 }) {
+    if (element.matches(TEASER_RUN_SELECTOR) && !element.querySelector("li.cmp-image-list__item")) {
+      if (!element.parentNode) return;
+      const run = [element];
+      let next = element.nextElementSibling;
+      while (next && next.matches(TEASER_RUN_SELECTOR)) {
+        run.push(next);
+        next = next.nextElementSibling;
+      }
+      const teaserCells = run.map((t) => teaserRow(t, document2)).filter(Boolean);
+      run.slice(1).forEach((t) => t.remove());
+      if (!teaserCells.length) {
+        element.replaceWith(...element.childNodes);
+        return;
+      }
+      const block2 = WebImporter.Blocks.createBlock(document2, { name: "cards", variants: ["secure"], cells: teaserCells });
+      element.replaceWith(block2);
+      return;
+    }
     let items = [...element.querySelectorAll("li.cmp-image-list__item")];
     if (!items.length) items = [...element.querySelectorAll("article.cmp-image-list__item-content")];
     if (!items.length) items = [...element.querySelectorAll(":scope ul > li")];
@@ -501,9 +583,30 @@ var CustomImportScript = (() => {
       }
     });
   }
+  var PRIMARY_BUTTON_SELECTOR = ".button.cmp-button--primary:not(.cmp-button--icononly)";
+  function convertPrimaryButtons(root) {
+    const doc = root.ownerDocument || document;
+    root.querySelectorAll(PRIMARY_BUTTON_SELECTOR).forEach((wrapper) => {
+      if (wrapper.getAttribute("data-wknd-cta") === "done") return;
+      const src = wrapper.querySelector("a[href]");
+      if (!src) return;
+      const label = ((src.querySelector(".cmp-button__text") || src).textContent || "").replace(/\s+/g, " ").trim() || (src.getAttribute("aria-label") || "").trim();
+      if (!label) return;
+      const p = doc.createElement("p");
+      const strong = doc.createElement("strong");
+      const a = doc.createElement("a");
+      a.setAttribute("href", src.getAttribute("href"));
+      a.textContent = label;
+      strong.append(a);
+      p.append(strong);
+      wrapper.replaceChildren(p);
+      wrapper.setAttribute("data-wknd-cta", "done");
+    });
+  }
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
       WebImporter.DOMUtils.remove(element, CHROME_SELECTORS);
+      convertPrimaryButtons(element);
       WebImporter.DOMUtils.remove(element, ADVENTURE_SELECTORS);
       removeEmptyGrids(element);
     }
@@ -524,13 +627,16 @@ var CustomImportScript = (() => {
       const nodes = [element, ...element.querySelectorAll("*")];
       nodes.forEach((el) => {
         if (!el.attributes) return;
-        Array.from(el.attributes).map((attr) => attr.name).filter((name) => name.startsWith("data-cmp-")).forEach((name) => el.removeAttribute(name));
+        Array.from(el.attributes).map((attr) => attr.name).filter((name) => name.startsWith("data-cmp-") || name === "data-wknd-cta").forEach((name) => el.removeAttribute(name));
       });
     }
   }
 
   // tools/importer/transformers/wknd-sections.js
   var SECTION_MARKER_ATTR = "data-excat-section-id";
+  var SECTION_STYLE_ATTR = "data-excat-section-style";
+  var FONT_SMALL_SELECTOR = ".text.cmp-text--font-small";
+  var FONT_SMALL_STYLE = "font-small";
   var CONTENT_SELECTOR = "img, picture, video, iframe, table, h1, h2, h3, h4, h5, h6, p, a, li, blockquote";
   function querySection(root, selectors) {
     const list = Array.isArray(selectors) ? selectors : [selectors];
@@ -563,15 +669,35 @@ var CustomImportScript = (() => {
     }
     return false;
   }
+  function sectionIndexOf(node, starts) {
+    let idx = 0;
+    starts.forEach((start, i) => {
+      if (!start) return;
+      if (start === node || start.contains(node) || node.compareDocumentPosition(start) & 2) idx = i;
+    });
+    return idx;
+  }
+  function effectiveStyles(root, sections) {
+    const styles = sections.map((s) => s && s.style ? [s.style] : []);
+    const starts = sections.map((s) => s ? querySection(root, s.selector) : null);
+    root.querySelectorAll(FONT_SMALL_SELECTOR).forEach((el) => {
+      if (!(el.textContent || "").trim()) return;
+      const list = styles[sectionIndexOf(el, starts)];
+      if (list && !list.includes(FONT_SMALL_STYLE)) list.push(FONT_SMALL_STYLE);
+    });
+    return styles.map((list) => list.join(", ") || null);
+  }
   function transform2(hookName, element, payload) {
     const template = payload && payload.template;
     const sections = template && Array.isArray(template.sections) ? template.sections : [];
     if (sections.length < 2) return;
     if (hookName === "beforeTransform") {
+      const styles = effectiveStyles(element, sections);
       for (let i = sections.length - 1; i >= 0; i -= 1) {
         const section = sections[i];
         if (!section) continue;
-        if (i === 0 && !section.style) continue;
+        const style = styles[i];
+        if (i === 0 && !style) continue;
         const sectionEl = querySection(element, section.selector);
         if (!sectionEl) continue;
         let prev = sectionEl.previousElementSibling;
@@ -582,33 +708,43 @@ var CustomImportScript = (() => {
         if (i === 0) {
           const marker = document.createElement("hr");
           marker.setAttribute(SECTION_MARKER_ATTR, section.id);
+          marker.setAttribute(SECTION_STYLE_ATTR, style);
           sectionEl.before(marker);
           continue;
         }
         if (isHr(prev)) {
-          if (section.style) prev.setAttribute(SECTION_MARKER_ATTR, section.id);
+          if (style) {
+            prev.setAttribute(SECTION_MARKER_ATTR, section.id);
+            prev.setAttribute(SECTION_STYLE_ATTR, style);
+          }
           continue;
         }
         if (!hasContentBefore(element, sectionEl)) continue;
         const hr = document.createElement("hr");
-        if (section.style) hr.setAttribute(SECTION_MARKER_ATTR, section.id);
+        if (style) {
+          hr.setAttribute(SECTION_MARKER_ATTR, section.id);
+          hr.setAttribute(SECTION_STYLE_ATTR, style);
+        }
         sectionEl.before(hr);
       }
     }
     if (hookName === "afterTransform") {
       for (let i = sections.length - 1; i >= 0; i -= 1) {
         const section = sections[i];
-        if (!section || !section.style) continue;
+        if (!section) continue;
         const marker = element.querySelector(`[${SECTION_MARKER_ATTR}="${section.id}"]`);
+        const style = marker && marker.getAttribute(SECTION_STYLE_ATTR) || section.style;
+        if (!style) continue;
         const anchor = marker || querySection(element, section.selector);
         if (!anchor) continue;
         const metadataBlock = WebImporter.Blocks.createBlock(document, {
           name: "Section Metadata",
-          cells: { style: section.style }
+          cells: { style }
         });
         anchor.after(metadataBlock);
         if (marker) {
           marker.removeAttribute(SECTION_MARKER_ATTR);
+          marker.removeAttribute(SECTION_STYLE_ATTR);
           if (i === 0) marker.remove();
         }
       }
@@ -681,7 +817,7 @@ var CustomImportScript = (() => {
         id: "2",
         name: "Featured article + Recent Articles",
         selector: [".teaser.cmp-teaser--featured"],
-        style: null,
+        style: "title-underline",
         blocks: ["columns-featured", "cards"],
         defaultContent: [
           "main.cmp-layout-container--fixed .teaser.cmp-teaser--featured + .title.cmp-title--underline",
@@ -692,7 +828,7 @@ var CustomImportScript = (() => {
         id: "3",
         name: "Next Adventures",
         selector: [".separator + .title.cmp-title--underline"],
-        style: null,
+        style: "title-underline",
         blocks: ["hero", "cards"],
         defaultContent: [
           ".separator + .title.cmp-title--underline",

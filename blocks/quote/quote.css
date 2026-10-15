@@ -1,11 +1,80 @@
-/* Quote - structural styles only (design pass applies brand styling) */
+/*
+ * Quote - WKND text component blockquote.
+ * Values extracted from https://wknd.site (see migration-work/quote-extracted.css).
+ * Source styles are identical at every breakpoint, so there are no media queries.
+ *
+ * Default (no attribution): plain blockquote, as on arctic-surfing.
+ * .quote-has-attribution: WKND "quote" text style (cmp-text--quote) - grey panel,
+ * serif quotation with a yellow rule and a sans-serif attribution line, as on
+ * alaskan-adventure, ski-touring, guide-la-skateparks and western-australia.
+ */
 .quote .quote-figure {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
   margin: 0;
 }
 
+.quote .quote-quotation {
+  margin: 18px 40px;
+  padding: 0;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: var(--body-line-height);
+}
+
+.quote .quote-quotation > * {
+  margin: 0;
+  font: inherit;
+  line-height: inherit;
+}
+
+.quote .quote-attribution > * {
+  margin: 0;
+}
+
+/* attributed quote: grey panel spanning the content gutter */
+.quote.quote-has-attribution {
+  margin: 18px calc(-1 * var(--content-gutter));
+  padding: 0 var(--content-gutter);
+  background-color: var(--light-color);
+}
+
+.quote.quote-has-attribution .quote-figure {
+  padding: 18px;
+}
+
+.quote.quote-has-attribution .quote-quotation {
+  margin: 0 0 18px;
+  padding: 14px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl);
+  line-height: var(--heading-line-height);
+}
+
+.quote.quote-has-attribution .quote-quotation::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 9px;
+  width: 80px;
+  border-bottom: 2px solid var(--brand-primary);
+}
+
+.quote.quote-has-attribution .quote-attribution > * {
+  margin: 0 0 13.5px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: var(--paragraph-line-height);
+  text-align: justify;
+}
+
+.quote.quote-has-attribution .quote-attribution u {
+  text-decoration: none;
+}
+
+/* optional image row (structural only - not used by the WKND source) */
 .quote .quote-image {
   line-height: 0;
 }
@@ -19,38 +88,4 @@
 .quote .quote-image img {
   height: auto;
   object-fit: cover;
-}
-
-.quote .quote-quotation {
-  margin: 0;
-  padding: 0 1em;
-}
-
-.quote .quote-quotation > :first-child {
-  margin-top: 0;
-}
-
-.quote .quote-quotation > :last-child {
-  margin-bottom: 0;
-}
-
-.quote .quote-attribution {
-  padding: 0 1em;
-}
-
-.quote .quote-attribution > * {
-  margin: 0;
-}
-
-/* image + quotation: quotation sits in its own panel below the image */
-.quote.quote-has-image .quote-image + .quote-quotation {
-  padding: 1.5em 1em 0;
-}
-
-@media (width >= 900px) {
-  .quote .quote-quotation,
-  .quote .quote-attribution {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
 }

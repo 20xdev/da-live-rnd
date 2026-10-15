@@ -1,31 +1,78 @@
-/* Breadcrumbs - structural styles only (design pass applies brand styling) */
+/* Breadcrumbs - values from WKND .cmp-breadcrumb computed styles */
+
+/*
+ * On the source the breadcrumb sits directly on top of the next section
+ * (e.g. the adventure mini carousel). Remove the global section spacing
+ * below a section that only holds the breadcrumbs (margins collapse, so
+ * the following section's top margin is cleared as well).
+ */
+main > .section.breadcrumbs-container:has(> .breadcrumbs-wrapper:only-child) {
+  margin-bottom: 0;
+}
+
+main > .section.breadcrumbs-container:has(> .breadcrumbs-wrapper:only-child) + .section {
+  margin-top: 0;
+}
+
+/*
+ * Source renders the nav as an inline-block whose list sits below the block
+ * top through baseline alignment in the body line box (7px on mobile, 5px on
+ * desktop; 46px tall breadcrumb on desktop). Reproduce that offset explicitly.
+ */
+.breadcrumbs nav {
+  padding-top: 7px;
+}
+
 .breadcrumbs .breadcrumbs-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5em 0;
   margin: 0;
-  padding: 0;
+  padding: 0 12px 0 0;
   list-style: none;
+  font-size: var(--body-font-size-xs);
+  line-height: var(--body-line-height);
 }
 
 .breadcrumbs .breadcrumbs-item {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 5px;
+  color: var(--text-color);
+  text-transform: uppercase;
 }
 
-/* separator: small right-pointing triangle between items */
+.breadcrumbs .breadcrumbs-item:first-child {
+  padding-left: 0;
+}
+
+/* source items are inline-blocks separated by a collapsed space (0.2em) */
+.breadcrumbs .breadcrumbs-item + .breadcrumbs-item {
+  margin-left: 0.2em;
+}
+
+/* separator: yellow play triangle (WKND icon font glyph, 1em advance) */
 .breadcrumbs .breadcrumbs-item + .breadcrumbs-item::before {
   content: '';
   display: inline-block;
   width: 0;
   height: 0;
-  margin: 0 1em;
-  border-top: 0.35em solid transparent;
-  border-bottom: 0.35em solid transparent;
-  border-left: 0.5em solid currentcolor;
+  margin: 0 calc(0.414em + 5px) 0 0.143em;
+  border-top: 0.36em solid transparent;
+  border-bottom: 0.36em solid transparent;
+  border-left: 0.643em solid var(--brand-primary);
+  vertical-align: 0.07em;
 }
 
-.breadcrumbs .breadcrumbs-item a {
+.breadcrumbs .breadcrumbs-item a:any-link {
+  color: var(--text-color);
+  font-weight: 600;
   text-decoration: none;
+}
+
+@media (width >= 768px) {
+  .breadcrumbs nav {
+    padding-top: 5px;
+  }
+
+  .breadcrumbs .breadcrumbs-list {
+    font-size: var(--body-font-size-s);
+  }
 }

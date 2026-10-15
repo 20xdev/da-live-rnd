@@ -54,7 +54,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         "main.cmp-layout-container--fixed > .cmp-container > .aem-Grid > .container.responsivegrid.aem-GridColumn--default--8"
       ],
-      "style": null,
+      "style": "title-underline",
       "blocks": [
         "hero",
         "accordion"
@@ -177,7 +177,13 @@ export default {
     // 5. WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
-    WebImporter.rules.createMetadata(main, document);
+    // Page metadata + `Template` (aem.js decorateTemplateAndTheme adds it as a body class;
+    // styles.css uses body.faq-page for the main column + right sidebar layout).
+    const meta = WebImporter.Blocks.getMetadata(document) || {};
+    // Lowercase key: the pipeline lowercases metadata names anyway (-> meta[name="template"]),
+    // and the local html-folder preview does not, so `Template` would not reach getMetadata().
+    meta.template = PAGE_TEMPLATE.name;
+    main.append(WebImporter.Blocks.getMetadataBlock(document, meta));
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 

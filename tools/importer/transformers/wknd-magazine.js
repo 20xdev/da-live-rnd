@@ -186,7 +186,7 @@ function rewriteUpNext(root, doc) {
   });
 }
 
-// PDF download: <p><a href="{absolute pdf}">{title}</a></p><p>{description}</p>.
+// PDF download: <p><em><a href="{absolute pdf}">{title}</a></em></p><p>{description}</p>.
 function rewriteDownloads(root, doc) {
   root.querySelectorAll(`${SIDEBAR} .download .cmp-download`).forEach((dl) => {
     const titleLink = dl.querySelector('.cmp-download__title-link');
@@ -202,7 +202,11 @@ function rewriteDownloads(root, doc) {
       const a = doc.createElement('a');
       a.setAttribute('href', absolutize(href));
       a.textContent = label || 'Download';
-      p.append(a);
+      // Source a.cmp-download__action renders as a dark (rgb(32,32,32)) button ->
+      // <em> = EDS secondary button (styles.css: secondary = dark).
+      const em = doc.createElement('em');
+      em.append(a);
+      p.append(em);
       nodes.push(p);
     }
     if (description) {

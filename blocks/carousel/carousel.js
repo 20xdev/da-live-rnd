@@ -3,6 +3,7 @@
  * One row per slide. A cell containing only an image is the slide image;
  * any other non-empty cell is the slide content (heading, text, CTA).
  * Controls (dot indicators + prev/next arrows) render below the slides.
+ * The block gets .carousel-has-content (hero look) or .carousel-image-only (mini look).
  */
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
@@ -14,8 +15,16 @@ function isImageCell(cell) {
   return cell.textContent.trim() === '';
 }
 
+// size the slide track to the active slide (source shows one slide at a time)
+function syncTrackHeight(block) {
+  const track = block.querySelector('.carousel-slides');
+  const active = track && track.children[block.dataset.activeSlide];
+  if (active) track.style.height = `${active.offsetHeight}px`;
+}
+
 function updateActiveSlide(block, slideIndex) {
   block.dataset.activeSlide = slideIndex;
+  syncTrackHeight(block);
   block.querySelectorAll('.carousel-slide').forEach((slide, idx) => {
     const active = idx === slideIndex;
     slide.setAttribute('aria-hidden', !active);
@@ -96,11 +105,14 @@ export default function decorate(block) {
 
   block.replaceChildren(container);
 
-  if (rows.length < 2) {
-    block.classList.add('carousel-single');
-    updateActiveSlide(block, 0);
-    return;
-  }
+  // look: hero (slides with a text panel) vs mini (image-only slides)
+  block.classList.add(slidesWrapper.querySelector('.carousel-slide-has-content')
+    ? 'carousel-has-content'
+    : 'carousel-image-only');
+
+  if (!rows.length) return;
+  // a single slide keeps its (inert) controls row, as on the source site
+  if (rows.length < 2) block.classList.add('carousel-single');
 
   const controls = document.createElement('div');
   controls.className = 'carousel-controls';
@@ -147,6 +159,10 @@ export default function decorate(block) {
     });
   }, { root: slidesWrapper, threshold: 0.5 });
   block.querySelectorAll('.carousel-slide').forEach((slide) => observer.observe(slide));
+
+  // keep the track height in sync when slide content reflows (resize, image load, fonts)
+  const resizeObserver = new ResizeObserver(() => syncTrackHeight(block));
+  block.querySelectorAll('.carousel-slide').forEach((slide) => resizeObserver.observe(slide));
 
   updateActiveSlide(block, 0);
 }

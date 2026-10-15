@@ -118,8 +118,11 @@ export default function parse(element, { document }) {
       const link = document.createElement('a');
       link.href = a.getAttribute('href') || '';
       link.textContent = a.textContent.trim();
+      // Source teaser CTAs render as yellow buttons -> <strong> = EDS primary button.
+      const strong = document.createElement('strong');
+      strong.append(link);
       const p = document.createElement('p');
-      p.append(link);
+      p.append(strong);
       content.push(p);
     });
 

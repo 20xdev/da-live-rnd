@@ -68,9 +68,40 @@ function removeEmptyGrids(root) {
   });
 }
 
+// Standalone AEM Core button components rendered as yellow CTAs on the source
+// (div.button.cmp-button--primary > a.cmp-button > span.cmp-button__text, e.g. homepage
+// "All Articles" / "All Trips"; computed background rgb(255, 234, 0)). Emitted as
+// <p><strong><a></a></strong></p> so EDS decorateButtons() makes them primary buttons.
+// Dark (cmp-button--secondary) / icon-only social buttons are intentionally NOT matched
+// (they are handled by cards-profile.js / wknd-magazine.js). The .button wrapper is kept so
+// any section/default-content selectors referencing it still match.
+const PRIMARY_BUTTON_SELECTOR = '.button.cmp-button--primary:not(.cmp-button--icononly)';
+
+function convertPrimaryButtons(root) {
+  const doc = root.ownerDocument || document;
+  root.querySelectorAll(PRIMARY_BUTTON_SELECTOR).forEach((wrapper) => {
+    if (wrapper.getAttribute('data-wknd-cta') === 'done') return;
+    const src = wrapper.querySelector('a[href]');
+    if (!src) return;
+    const label = ((src.querySelector('.cmp-button__text') || src).textContent || '')
+      .replace(/\s+/g, ' ').trim() || (src.getAttribute('aria-label') || '').trim();
+    if (!label) return;
+    const p = doc.createElement('p');
+    const strong = doc.createElement('strong');
+    const a = doc.createElement('a');
+    a.setAttribute('href', src.getAttribute('href'));
+    a.textContent = label;
+    strong.append(a);
+    p.append(strong);
+    wrapper.replaceChildren(p);
+    wrapper.setAttribute('data-wknd-cta', 'done');
+  });
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === TransformHook.beforeTransform) {
     WebImporter.DOMUtils.remove(element, CHROME_SELECTORS);
+    convertPrimaryButtons(element);
     // Before parsing so the cards-trip-facts / tabs parsers and default-content selectors
     // (e.g. homepage's ".title:not(.cmp-title--underline)") never pick these up.
     WebImporter.DOMUtils.remove(element, ADVENTURE_SELECTORS);
@@ -104,7 +135,7 @@ export default function transform(hookName, element, payload) {
       if (!el.attributes) return;
       Array.from(el.attributes)
         .map((attr) => attr.name)
-        .filter((name) => name.startsWith('data-cmp-'))
+        .filter((name) => name.startsWith('data-cmp-') || name === 'data-wknd-cta')
         .forEach((name) => el.removeAttribute(name));
     });
   }

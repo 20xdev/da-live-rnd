@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -10,64 +12,77 @@
  * governing permissions and limitations under the License.
  */
 
+/*
+ * Brand tokens (fonts, base colors, heading sizes) live in brand.css.
+ * The variables below extend them with the rest of the WKND design system.
+ */
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --brand-primary: #ffea00;
+  --brand-secondary: #202020;
+  --brand-third: #ebebeb;
+  --light-color: var(--brand-third);
+  --dark-color: var(--brand-secondary);
+  --text-color-inverse: #ebebeb;
+  --text-color-muted: #696969;
+  --border-color: #ebebeb;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
-
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* body sizes (WKND uses the same sizes at every breakpoint) */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 1.5;
+  --paragraph-line-height: 2.5;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: var(--heading-size-xxl);
+  --heading-font-size-xl: var(--heading-size-xl);
+  --heading-font-size-l: var(--heading-size-l);
+  --heading-font-size-m: var(--heading-size-m);
+  --heading-font-size-s: var(--heading-size-s);
+  --heading-font-size-xs: var(--heading-size-xs);
+  --heading-line-height: 1.5;
+  --heading-font-weight: 400;
+  --heading-font-weight-alt: 600;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* layout */
+  --nav-height: 130px;
+  --content-max-width: 1136px;
+  --content-gutter: 14px;
+
+  /* links */
+  --link-text-decoration-hover: underline;
+  --focus-outline: 2px solid var(--text-color);
+  --focus-outline-offset: 2px;
+
+  /* buttons */
+  --button-font-size: var(--body-font-size-s);
+  --button-font-weight: 600;
+  --button-line-height: 1.5;
+  --button-text-transform: uppercase;
+  --button-padding: 0 2rem;
+  --button-height: 48px;
+  --button-border-radius: 0;
+  --button-primary-bg: var(--brand-primary);
+  --button-primary-color: var(--text-color);
+  --button-secondary-bg: var(--brand-secondary);
+  --button-secondary-color: var(--text-color-inverse);
+  --button-accent-bg: var(--brand-third);
+  --button-accent-color: var(--text-color);
+  --button-disabled-opacity: 0.5;
 }
 
-/* fallback fonts */
+/* fallback fonts (size-adjust measured against the loaded web fonts) */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+  font-family: asar-fallback;
+  size-adjust: 85.3%;
+  src: local('Times New Roman'), local('Georgia');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: source-sans-pro-fallback;
+  size-adjust: 82.42%;
   src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
 }
 
 body {
@@ -77,15 +92,23 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: var(--body-line-height);
 }
 
 body.appear {
   display: block;
 }
 
+/* space reserved for the fixed header (source content offset: 130px, 200px from 1200px) */
+@media (width >= 1200px) {
+  :root {
+    --nav-height: 200px;
+  }
+}
+
 header {
   height: var(--nav-height);
+  background-color: var(--background-color);
 }
 
 header .header,
@@ -104,22 +127,53 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  color: var(--text-color);
+  line-height: var(--heading-line-height);
   scroll-margin: 40px;
+}
+
+/* serif display headings */
+h1,
+h2,
+h3 {
+  margin-top: 27px;
+  margin-bottom: 13.5px;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+}
+
+/* sans-serif uppercase sub-headings */
+h4,
+h5,
+h6 {
+  font-family: var(--body-font-family);
+  font-weight: var(--heading-font-weight-alt);
+  text-transform: uppercase;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
 
-p,
+h4 {
+  margin: 1.33em 0;
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  margin: 1.67em 0;
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  margin: 2.33em 0;
+  font-size: var(--heading-font-size-xs);
+}
+
+p {
+  margin: 0 0 13.5px;
+}
+
 dl,
 ol,
 ul,
@@ -127,6 +181,12 @@ pre,
 blockquote {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
+}
+
+/* long-form default content (article/body copy) */
+main .default-content-wrapper p {
+  line-height: var(--paragraph-line-height);
+  text-align: justify;
 }
 
 code,
@@ -162,120 +222,128 @@ a:any-link {
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: var(--link-text-decoration-hover);
 }
 
-/* buttons */
+a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+h1 a:any-link,
+h2 a:any-link,
+h3 a:any-link {
+  color: var(--text-color);
+}
+
+/* buttons: global reset (undecorated a.button renders like a link) */
+main .button-container {
+  display: inline;
+}
+
+main a.button:any-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--link-color);
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  white-space: normal;
+}
+
 p.button-wrapper {
   margin: 12px 0;
 }
 
-a.button:any-link,
+/* buttons: WKND variants (bold = primary, italic = secondary, bold+italic = accent) */
+main a.button.primary:any-link,
+main a.button.secondary:any-link,
+main a.button.accent:any-link,
 button.button {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   max-width: 100%;
+  height: var(--button-height);
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+  border: 0;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
   text-decoration: none;
+  text-transform: var(--button-text-transform);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+main a.button:focus-visible,
+button.button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
 a.button[aria-disabled="true"],
 button.button:disabled {
   cursor: not-allowed;
   pointer-events: none;
+  opacity: var(--button-disabled-opacity);
 }
 
-a.button.primary,
+/* primary: WKND yellow (cmp-button--primary, teaser CTAs) - no hover change on source */
+main a.button.primary:any-link,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-color);
 }
 
-a.button.primary:hover,
-a.button.primary:focus-visible,
+main a.button.primary:hover,
+main a.button.primary:active,
 button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+button.button.primary:active {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-color);
+  text-decoration: none;
 }
 
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary,
+/* secondary: dark (cmp-button--secondary) */
+main a.button.secondary:any-link,
 button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-color);
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
+main a.button.secondary:hover,
+main a.button.secondary:active,
 button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+button.button.secondary:active {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-color);
+  text-decoration: none;
 }
 
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
-a.button.accent,
+/* accent: light grey (default cmp-button) */
+main a.button.accent:any-link,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--button-accent-bg);
+  color: var(--button-accent-color);
 }
 
-a.button.accent:hover,
-a.button.accent:focus-visible,
+main a.button.accent:hover,
+main a.button.accent:active,
 button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+button.button.accent:active {
+  background-color: var(--button-accent-bg);
+  color: var(--button-accent-color);
+  text-decoration: none;
 }
 
 main img {
@@ -298,22 +366,17 @@ main img {
 /* sections */
 main > .section {
   margin: 40px 0;
+  padding: var(--section-padding);
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: auto;
-  padding: 0 24px;
+  padding: 0 var(--content-gutter);
 }
 
 main > .section:first-of-type {
   margin-top: 0;
-}
-
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
 }
 
 /* section metadata */
@@ -322,4 +385,184 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--dark-color);
+  color: var(--text-color-inverse);
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.dark :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--text-color-inverse);
+}
+
+main .section.dark a:any-link:not(.button) {
+  color: #f7f7f7;
+  text-decoration: underline;
+}
+
+/*
+ * sidebar layout (WKND aem-Grid 3/9 split): first wrapper = narrow sidebar column,
+ * remaining wrappers = main column; stacked below the source's 1025px breakpoint.
+ */
+@media (width > 1024px) {
+  main > .section.sidebar {
+    display: flow-root;
+    max-width: calc(var(--content-max-width) + 2 * var(--content-gutter));
+    margin-inline: auto;
+  }
+
+  main > .section.sidebar > div {
+    box-sizing: border-box;
+    max-width: none;
+    margin: 0;
+  }
+
+  main > .section.sidebar > div:first-child {
+    float: left;
+    width: 25%;
+  }
+
+  main > .section.sidebar > div:not(:first-child) {
+    display: flow-root;
+    margin-left: 25%;
+  }
+}
+
+/*
+ * main column + right sidebar page layout (Template: faq-page / magazine-article).
+ * WKND aem-Grid 8 + offset 1 + 3 of 12 inside the 1164px fixed container (776 / 97 / 291 at
+ * 1440); stacked below the source's 1025px breakpoint. The last section is the sidebar and
+ * spans the rows of the left column; on magazine articles the hero image and breadcrumbs
+ * sections span both columns above them. Grid items don't collapse margins, so only the
+ * bottom section margin is kept.
+ */
+@media (width > 1024px) {
+  body:is(.faq-page, .magazine-article) main {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 3fr);
+    grid-auto-flow: row dense;
+    column-gap: calc(100% / 12);
+    align-items: start;
+    max-width: calc(var(--content-max-width) + 2 * var(--content-gutter));
+    margin-inline: auto;
+  }
+
+  body:is(.faq-page, .magazine-article) main > .section {
+    grid-column: 1;
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  body.magazine-article main > .section:is(.hero-container, .breadcrumbs-container) {
+    grid-column: 1 / -1;
+  }
+
+  /* source article column and sidebar content have no inner gutter */
+  body.magazine-article main > .section.title-underline-h2 > div {
+    padding-inline: 0;
+  }
+
+  body:is(.faq-page, .magazine-article) main > .section:last-child:not(:first-child) {
+    grid-column: 2;
+    grid-row-end: span 20;
+  }
+
+  body:is(.faq-page, .magazine-article) main > .section:last-child:not(:first-child) > div {
+    padding-inline: 0;
+  }
+}
+
+/* magazine article: the breadcrumbs sit directly below the hero image on the source */
+body.magazine-article main > .section.hero-container:has(+ .section.breadcrumbs-container) {
+  margin-bottom: 0;
+}
+
+body.magazine-article main > .section.hero-container + .section.breadcrumbs-container {
+  margin-top: 0;
+}
+
+/* small text (WKND cmp-text--font-small: 14px, same 2.5 line height) */
+main .section.font-small .default-content-wrapper p {
+  font-size: var(--body-font-size-s);
+}
+
+/* yellow 84px rule under headings (WKND cmp-title--underline) */
+main .section.title-underline .default-content-wrapper :is(h1, h2)::after,
+main .section.title-underline-h2 .default-content-wrapper h2::after {
+  content: "";
+  display: block;
+  width: 84px;
+  padding-top: 8px;
+  border-bottom: 2px solid var(--brand-primary);
+}
+
+/* author bio (WKND byline) */
+main .section.author-bio .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  column-gap: 25px;
+  align-items: start;
+}
+
+main .section.author-bio .default-content-wrapper > * {
+  grid-column: 2;
+}
+
+main .section.author-bio .default-content-wrapper h2 {
+  margin: 0 0 4px;
+  padding-top: 8px;
+  font-size: var(--heading-font-size-l);
+}
+
+main .section.author-bio .default-content-wrapper h2 + p {
+  color: var(--text-color-muted);
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+}
+
+main .section.author-bio .default-content-wrapper > p:first-child:has(picture) {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  margin: 7px 0;
+}
+
+main .section.author-bio .default-content-wrapper img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* up next list (WKND cmp-list--upnext) */
+main .section.up-next .default-content-wrapper ul {
+  margin: 0;
+  padding: 32px 0 0;
+  list-style: none;
+}
+
+main .section.up-next .default-content-wrapper li {
+  margin: 0 0 18px;
+  padding: 8px 16px;
+  border-left: 5px solid var(--border-color);
+  color: var(--text-color-muted);
+  font-size: var(--body-font-size-xs);
+  line-height: var(--body-line-height);
+  text-transform: uppercase;
+}
+
+main .section.up-next .default-content-wrapper li:hover {
+  border-color: var(--text-color);
+  background-color: var(--brand-primary);
+}
+
+main .section.up-next .default-content-wrapper li a:any-link {
+  display: inline-block;
+  padding: 5px 0;
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  text-decoration: none;
 }

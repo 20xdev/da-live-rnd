@@ -1,21 +1,28 @@
-/* Cards (Trip Facts): structural layout only — brand styling is applied by the design pass. */
+/* Cards (Trip Facts): WKND content-fragment "elements" list (label/value facts). */
+
+/* mobile / tablet: facts flow inline and wrap (source <= 1024px) */
+.cards-trip-facts {
+  /* source column: phone 7/12 of the section; the 2x gutter accounts for column padding */
+  max-width: calc((100% + 2 * var(--content-gutter)) * 7 / 12 - 2 * var(--content-gutter));
+  color: var(--text-color);
+}
 
 .cards-trip-facts > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cards-trip-facts .cards-trip-facts-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  border-left: 4px solid currentcolor;
-  border-left-color: color-mix(in srgb, currentcolor 15%, transparent);
+  flex: 0 0 auto;
+  min-height: 84px;
+  margin: 0 0 22.5px;
+  padding: 0 36px 0 0;
+  font-family: var(--body-font-family);
+  text-transform: uppercase;
 }
 
 .cards-trip-facts .cards-trip-facts-label,
@@ -23,23 +30,51 @@
   overflow-wrap: anywhere;
 }
 
+.cards-trip-facts .cards-trip-facts-label {
+  padding: 12px 0 0;
+  color: var(--text-color-muted);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.cards-trip-facts .cards-trip-facts-value {
+  margin: 0;
+  padding: 7px 0 0;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: 21px;
+}
+
 .cards-trip-facts .cards-trip-facts-label p,
 .cards-trip-facts .cards-trip-facts-value p {
   margin: 0;
 }
 
-/* Tablet: facts flow into two columns when the block spans full width. */
-@media (width >= 600px) {
-  .cards-trip-facts > ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.cards-trip-facts .cards-trip-facts-value :is(strong, b) {
+  font-weight: inherit;
+}
+
+/* tablet: source column is 9/12 of the section */
+@media (width >= 768px) {
+  .cards-trip-facts {
+    max-width: calc((100% + 2 * var(--content-gutter)) * 3 / 4 - 2 * var(--content-gutter));
   }
 }
 
-/* Desktop: back to a single vertical stack (block sits in a narrow sidebar). */
-@media (width >= 900px) {
+/* desktop: vertical stack with a light-grey left bar (block sits in the sidebar column) */
+@media (width > 1024px) {
+  .cards-trip-facts {
+    max-width: none;
+  }
+
   .cards-trip-facts > ul {
-    display: flex;
-    flex-direction: column;
+    display: block;
+  }
+
+  .cards-trip-facts .cards-trip-facts-item {
+    padding: 0 18px;
+    border-left: 5px solid var(--border-color);
   }
 }

@@ -82,7 +82,108 @@ function resolveImage(container, document, fallbackAlt) {
   return out;
 }
 
+/**
+ * Secure ("members only") teasers (verified in block-context/cards/source.html, magazine.html):
+ *   .teaser.cmp-teaser--secure > .cmp-teaser
+ *     .cmp-teaser__content > h2.cmp-teaser__title, .cmp-teaser__description,
+ *                            .cmp-teaser__action-container (plain "Read More", usually no link)
+ *     .cmp-teaser__image .cmp-image img
+ * The instance selector matches EACH teaser (no wrapper); one block = a run of consecutive
+ * sibling secure teasers. Built on the first teaser of the run; the rest are removed (the import
+ * script skips detached elements). Iteration is keyed on the block-level .teaser wrappers.
+ * Output: `Cards (secure)`, one row per teaser, 2 cells:
+ *   [image] | [h3 title, p description, (p > a CTA | p plain unlinked action text, e.g. "Read More")].
+ */
+const TEASER_RUN_SELECTOR = '.teaser.cmp-teaser--secure';
+
+function teaserRow(teaserEl, document) {
+  const teaser = teaserEl.querySelector('.cmp-teaser') || teaserEl;
+  const titleEl = teaser.querySelector('.cmp-teaser__title') || teaser.querySelector('h1, h2, h3, h4');
+  const titleText = titleEl ? titleEl.textContent.replace(/\s+/g, ' ').trim() : '';
+
+  // Real links become link paragraphs; unlinked action text is kept as plain text (below).
+  const actions = [...teaser.querySelectorAll('.cmp-teaser__action-container a[href], a.cmp-teaser__action-link[href]')]
+    .filter((a, i, arr) => arr.indexOf(a) === i);
+  const titleLinkEl = (titleEl && (titleEl.querySelector('a[href]') || titleEl.closest('a[href]')))
+    || teaser.querySelector('a.cmp-teaser__title-link[href]')
+    || actions[0];
+  const href = titleLinkEl ? titleLinkEl.getAttribute('href') : '';
+
+  const image = resolveImage(
+    teaser.querySelector('.cmp-teaser__image') || teaser.querySelector('.cmp-image, img'),
+    document,
+    titleText,
+  );
+
+  const body = [];
+  if (titleText) {
+    const h = document.createElement('h3');
+    if (href) {
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = titleText;
+      h.append(a);
+    } else {
+      h.textContent = titleText;
+    }
+    body.push(h);
+  }
+  const desc = teaser.querySelector('.cmp-teaser__description');
+  if (desc && desc.textContent.trim()) {
+    const paras = [...desc.querySelectorAll(':scope > p')].map((p) => p.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    (paras.length ? paras : [desc.textContent.replace(/\s+/g, ' ').trim()]).forEach((t) => {
+      const p = document.createElement('p');
+      p.textContent = t;
+      body.push(p);
+    });
+  }
+  actions.forEach((a) => {
+    const text = a.textContent.replace(/\s+/g, ' ').trim();
+    if (!text) return;
+    const link = document.createElement('a');
+    link.href = a.getAttribute('href');
+    link.textContent = text;
+    const p = document.createElement('p');
+    p.append(link);
+    body.push(p);
+  });
+  // Unlinked action container (locked teaser, e.g. plain "Read More"): keep its label as a
+  // final plain paragraph (the cards (secure) variant styles it as the locked CTA).
+  [...teaser.querySelectorAll('.cmp-teaser__action-container')]
+    .filter((c) => !c.querySelector('a[href]'))
+    .forEach((c) => {
+      const label = c.textContent.replace(/\s+/g, ' ').trim();
+      if (!label) return;
+      const p = document.createElement('p');
+      p.textContent = label;
+      body.push(p);
+    });
+
+  if (!image && !body.length) return null;
+  return [image || '', body.length ? body : ''];
+}
+
 export default function parse(element, { document }) {
+  // Secure teaser run (magazine). Image-list elements never take this branch.
+  if (element.matches(TEASER_RUN_SELECTOR) && !element.querySelector('li.cmp-image-list__item')) {
+    if (!element.parentNode) return;
+    const run = [element];
+    let next = element.nextElementSibling;
+    while (next && next.matches(TEASER_RUN_SELECTOR)) {
+      run.push(next);
+      next = next.nextElementSibling;
+    }
+    const teaserCells = run.map((t) => teaserRow(t, document)).filter(Boolean);
+    run.slice(1).forEach((t) => t.remove());
+    if (!teaserCells.length) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document, { name: 'cards', variants: ['secure'], cells: teaserCells });
+    element.replaceWith(block);
+    return;
+  }
+
   // Primary: block-level list items. Fallbacks: article wrappers, then generic li.
   let items = [...element.querySelectorAll('li.cmp-image-list__item')];
   if (!items.length) items = [...element.querySelectorAll('article.cmp-image-list__item-content')];

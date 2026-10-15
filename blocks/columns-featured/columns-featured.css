@@ -1,19 +1,35 @@
-/* Columns Featured: structural layout only; brand styling is applied by the design pass. */
+/*
+ * Columns Featured (WKND .cmp-teaser--featured)
+ * Values extracted from source computed styles at 390 / 800 / 1440px.
+ * Source switches from stacked to side-by-side at 768px, so this block does too.
+ */
+
+/*
+ * Source: .cmp-teaser margin-bottom 1em (18px) that does not collapse with the
+ * following title (45px total gap). Padding reproduces that when content follows
+ * the block in the same section; at a section end the section margin applies.
+ */
+.columns-featured-wrapper:not(:last-child) > .columns-featured {
+  padding-bottom: 18px;
+}
+
+/* mobile: grey text panel on top, image below at its natural ratio */
 .columns-featured .columns-featured-row {
   display: flex;
   flex-direction: column;
 }
 
-.columns-featured .columns-featured-image {
-  order: 0;
-}
-
 .columns-featured .columns-featured-content {
-  order: 1;
+  order: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 24px;
+  margin-top: -18px;
+  padding: 63px 36px 36px;
+  background-color: var(--light-color);
+}
+
+.columns-featured .columns-featured-image {
+  order: 1;
 }
 
 .columns-featured .columns-featured-image picture,
@@ -23,46 +39,70 @@
 }
 
 .columns-featured .columns-featured-image img {
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  object-position: center top;
 }
 
-.columns-featured .columns-featured-content > :first-child {
-  margin-top: 0;
+/* eyebrow ("Featured Article") */
+.columns-featured .columns-featured-content .columns-featured-eyebrow {
+  margin: 0 0 13.5px;
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  line-height: 45px;
+  text-align: justify;
 }
 
-.columns-featured .columns-featured-content > :last-child {
-  margin-bottom: 0;
+.columns-featured .columns-featured-content h2 {
+  margin: 18px 0;
+  font-size: var(--heading-font-size-xl);
+  line-height: 54px;
 }
 
-@media (width >= 600px) {
-  .columns-featured .columns-featured-content {
-    padding: 32px;
-  }
+/* description */
+.columns-featured .columns-featured-content p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.75;
 }
 
-@media (width >= 900px) {
+/* CTA: WKND teaser action link (yellow, 1em 2.5em padding) */
+.columns-featured .columns-featured-content p.button-wrapper {
+  margin: 18px 0;
+}
+
+main .columns-featured a.button.primary:any-link {
+  height: auto;
+  padding: 14px 35px;
+  font-size: var(--body-font-size-s);
+  line-height: 21px;
+}
+
+@media (width >= 768px) {
   .columns-featured .columns-featured-row {
     flex-direction: row;
     align-items: stretch;
   }
 
   .columns-featured .columns-featured-image {
-    flex: 0 0 62%;
+    order: 0;
+    display: flex;
+    flex: 2 1 0%;
+    flex-direction: column;
+  }
+
+  .columns-featured .columns-featured-image picture,
+  .columns-featured .columns-featured-image img {
+    height: 100%;
   }
 
   .columns-featured .columns-featured-content {
-    flex: 1 1 38%;
-    order: unset;
+    order: 1;
+    flex: 1 1 0%;
+    margin-top: 0;
   }
 
   .columns-featured .columns-featured-no-image .columns-featured-content {
     flex-basis: 100%;
-  }
-}
-
-@media (width >= 1200px) {
-  .columns-featured .columns-featured-content {
-    padding: 40px;
   }
 }

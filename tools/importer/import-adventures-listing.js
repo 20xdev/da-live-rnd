@@ -70,7 +70,7 @@ const PAGE_TEMPLATE = {
         "main.cmp-layout-container--fixed .title.cmp-title--underline",
         "main.cmp-layout-container--fixed .tabs.panelcontainer"
       ],
-      "style": null,
+      "style": "title-underline",
       "blocks": [
         "tabs"
       ],

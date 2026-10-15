@@ -1,0 +1,22 @@
+/*
+ * Brand tokens extracted from https://wknd.site (see migration-work/brand.json).
+ * Fonts are delivered by Google Fonts (link tags in head.html).
+ * Fallback faces (asar-fallback, source-sans-pro-fallback) are defined in styles.css.
+ */
+
+:root {
+  --heading-font-family: asar, asar-fallback, georgia, "Times New Roman", times, serif;
+  --body-font-family: "Source Sans Pro", source-sans-pro-fallback, "Helvetica Neue", helvetica, arial, sans-serif;
+  --background-color: #fff;
+  --text-color: #202020;
+  --link-color: #0045ff;
+  --link-hover-color: #0045ff;
+  --section-padding: 0;
+  --nav-height: 64px;
+  --heading-size-xxl: 40px;
+  --heading-size-xl: 36px;
+  --heading-size-l: 24px;
+  --heading-size-m: 16px;
+  --heading-size-s: 14px;
+  --heading-size-xs: 10px;
+}

@@ -162,6 +162,8 @@ function buildToggle(label, block) {
     button.setAttribute('aria-checked', on);
     block.classList.toggle('search-summary-on', on);
   });
+  // like the source <label>, clicking the text flips the switch too
+  text.addEventListener('click', () => button.click());
   wrapper.append(button, text);
   return wrapper;
 }
@@ -178,7 +180,7 @@ export default function decorate(block) {
   const box = document.createElement('div');
   box.className = 'search-box';
   const icon = document.createElement('span');
-  icon.className = 'icon icon-search';
+  icon.className = 'icon icon-search-wknd';
   const input = document.createElement('input');
   input.type = 'search';
   input.className = 'search-input';

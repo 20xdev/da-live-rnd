@@ -1,68 +1,111 @@
-/* Search - structural styles only (design pass applies brand styling) */
-.search .search-box {
-  position: relative;
-  display: flex;
-  align-items: center;
+/*
+ * Search - values extracted from wknd.site .cmp-contentaisearch (initial, empty state)
+ * see migration-work/search-extracted.css
+ */
+.search {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
 }
 
-.search .search-box .icon-search {
+/* field: icon + input */
+.search .search-box {
+  position: relative;
+  height: 32px;
+}
+
+.search .search-box .icon {
   position: absolute;
-  left: 0.5em;
-  width: 1em;
-  height: 1em;
+  top: 8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
   pointer-events: none;
 }
 
-.search .search-box .icon-search img {
+.search .search-box .icon img {
   display: block;
   width: 100%;
   height: 100%;
 }
 
 .search .search-input {
+  appearance: none;
   box-sizing: border-box;
   display: block;
   width: 100%;
+  height: 100%;
   margin: 0;
-  padding: 0.4em 0.5em 0.4em 2em;
-  border: 1px solid currentcolor;
+  padding: 1px 32px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background-color: var(--background-color);
+  color: #000;
   font: inherit;
+  line-height: normal;
 }
 
-/* summary toggle switch */
+.search .search-input::placeholder {
+  color: #767676;
+  opacity: 1;
+}
+
+.search .search-input:focus {
+  outline: 2px solid var(--brand-secondary);
+  outline-offset: -1px;
+}
+
+/* "Show AI-generated summary" switch */
 .search .search-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5em;
-  margin-top: 0.75em;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--brand-secondary);
+  font-size: var(--body-font-size-s);
+  line-height: 1.25;
+  cursor: pointer;
+  user-select: none;
 }
 
 .search .search-toggle-switch {
+  appearance: none;
   position: relative;
   flex: 0 0 auto;
   width: 36px;
   height: 20px;
   margin: 0;
   padding: 0;
-  border: 1px solid currentcolor;
-  border-radius: 10px;
-  background: none;
+  border: 0;
+  border-radius: 16px;
+  background-color: #cacaca;
   cursor: pointer;
+  transition: background-color 0.15s;
 }
 
-.search .search-toggle-switch::after {
+.search .search-toggle-switch[aria-checked='true'] {
+  background-color: var(--brand-primary);
+}
+
+.search .search-toggle-switch:focus-visible {
+  outline: 2px solid var(--brand-secondary);
+  outline-offset: 2px;
+}
+
+.search .search-toggle-switch::before {
   content: '';
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: currentcolor;
-  transition: transform 0.2s;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+  transition: transform 0.15s;
 }
 
-.search .search-toggle-switch[aria-checked='true']::after {
+.search .search-toggle-switch[aria-checked='true']::before {
   transform: translateX(16px);
 }
 
